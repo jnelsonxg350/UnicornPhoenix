@@ -34,6 +34,7 @@ public class Person extends HttpServlet {
 		  "<input type='text' class='form-control' placeholder='Username' aria-describedby='basic-addon1'> " +
 		"</div>";
 		
+		body += "hello";
 		
 		pw.write(Utilz.getTemplate(body));		
 		pw.close();
