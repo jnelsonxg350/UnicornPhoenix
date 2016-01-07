@@ -33,9 +33,7 @@ public class Person extends HttpServlet {
 		  "<span class='input-group-addon' id='basic-addon1'>@</span> " +
 		  "<input type='text' class='form-control' placeholder='Username' aria-describedby='basic-addon1'> " +
 		"</div>";
-		
-		body += "hello";
-		
+				
 		pw.write(Utilz.getTemplate(body));		
 		pw.close();
 	}
