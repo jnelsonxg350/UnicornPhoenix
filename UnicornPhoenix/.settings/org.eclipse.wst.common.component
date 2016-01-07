@@ -2,7 +2,7 @@
     <wb-module deploy-name="UnicornPhoenix">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="UnicornPhoenix"/>
         <property name="java-output-path" value="/UnicornPhoenix/build/classes"/>
+        <property name="context-root" value="UnicornPhoenix"/>
     </wb-module>
 </project-modules>

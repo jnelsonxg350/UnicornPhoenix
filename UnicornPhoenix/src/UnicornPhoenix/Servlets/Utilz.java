@@ -19,7 +19,8 @@ public class Utilz {
 	
 	    "<!-- Bootstrap core CSS --> " +
 	    "<link href='/UnicornPhoenix/css/bootstrap.min.css' rel='stylesheet'> " +
-	
+	    "<link href='/UnicornPhoenix/css/site.css' rel='stylesheet'> " +
+	    
 	    "<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --> " +
 	    "<!--[if lt IE 9]> " +
 	      "<script src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'></script> " +
@@ -43,19 +44,12 @@ public class Utilz {
 	        "</div> " +
 	        "<div id='navbar' class='navbar-collapse collapse'> " +
 	          "<ul class='nav navbar-nav'> " +
-	            "<li class='active'><a href='#'>Home</a></li> " +
-	            "<li><a href='/UnicornPhoenix/Person'>Person</a></li> " +
-	            "<li><a href='#contact'>Contact</a></li> " +
+	            "<li class='active'><a href='/UnicornPhoenix'>Home</a></li> " +
 	            "<li class='dropdown'> " +
-	              "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span class='caret'></span></a> " +
+	              "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Person <span class='caret'></span></a> " +
 	              "<ul class='dropdown-menu'> " +
-	                "<li><a href='#'>Action</a></li> " +
-	                "<li><a href='#'>Another action</a></li> " +
-	                "<li><a href='#'>Something else here</a></li> " +
-	                "<li role='separator' class='divider'></li> " +
-	                "<li class='dropdown-header'>Nav header</li> " +
-	               "<li><a href='#'>Separated link</a></li> " +
-	                "<li><a href='#'>One more separated link</a></li> " +
+	                "<li><a href='/UnicornPhoenix/AllPeople'>List</a></li> " +
+	                "<li><a href='/UnicornPhoenix/AddPerson'>Add</a></li> " +
 	              "</ul> " +
 	            "</li> " +
 	          "</ul> " +
@@ -76,6 +70,7 @@ public class Utilz {
 	    "<!-- Placed at the end of the document so the pages load faster --> " +
 	    "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script> " +
 	    "<script src='/UnicornPhoenix/js/bootstrap.min.js'></script> " +
+	    "<script src='/UnicornPhoenix/js/site.js'></script> " +
 	  "</body> " +
 	"</html> ");
 		

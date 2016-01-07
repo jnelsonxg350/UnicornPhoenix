@@ -1,24 +1,27 @@
 $(document).ready(function(){
 	//go to the update form
-	$('.btnUpdatePerson').click(function(){
+	$('.btnEditPerson').click(function(){
 		var id = $(this).data('id');
-		window.location = "/CapstoneFall2015/PersonForm?id=" + id;
+		window.location = "/UnicornPhoenix/AddPerson?id=" + id;
 	});
 	//delete the person
 	$('.btnDeletePerson').click(function(){
 		var id = $(this).data('id');
-		$.post( "/CapstoneFall2015/Person/Delete?id=" + id, function(data){
-			window.location = "/CapstoneFall2015/PersonList";
+		$.post( "/UnicornPhoenix/DeletePerson?id=" + id, function(data){
+			window.location = "/UnicornPhoenix/AllPeople";
 		});		
+	});
+	$('.btnAddPerson').click(function(){
+		window.location = "/UnicornPhoenix/AddPerson";
 	});
 	//Capture submit of form to press the add button
 	$( "#personForm" ).submit(function(event) 
 	{
 		event.preventDefault();
-	  	$.post( "/CapstoneFall2015/Person/Add", $( "#personForm" ).serialize())
+	  	$.post( "/UnicornPhoenix/AddPerson", $( "#personForm" ).serialize())
 	  	.done(function(data)
 		{
-	  		window.location = "/CapstoneFall2015/PersonList";
+	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
 	
