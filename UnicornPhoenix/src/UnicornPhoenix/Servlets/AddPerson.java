@@ -16,12 +16,24 @@ public class AddPerson extends Master {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		Person p = db.getPerson(request.getParameter("id"));
-		//display the form
-		body.append("<form id='personForm'>");
-		body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name' value='" + p.getFirstName() + "'></div>");
-		body.append("<div class='form-group'><label for='firstname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' value='" + p.getLastName() + "'></div>");
-		body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email' value='" + p.getEmailAddress() + "'></div>");
-		body.append("<button type='submit' class='btn btn-default'>Submit</button></form>");
+		
+		//Couldn't find a person
+		if(p.getLastName() == null)
+		{
+			body.append("<form id='personForm'>");
+			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name'></div>");
+			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name'></div>");
+			body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email'></div>");
+			body.append("<button type='submit' class='btn btn-default'>Submit</button></form>");
+		}
+		else //found a person display their info
+		{
+			body.append("<form id='personForm'>");
+			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name' value='" + p.getFirstName() + "'></div>");
+			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' value='" + p.getLastName() + "'></div>");
+			body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email' value='" + p.getEmailAddress() + "'></div>");
+			body.append("<button type='submit' class='btn btn-default'>Submit</button></form>");
+		}		
 				
 		super.doGet(request, response);
 	}
