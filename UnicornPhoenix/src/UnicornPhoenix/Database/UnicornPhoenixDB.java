@@ -1289,6 +1289,1522 @@ public class UnicornPhoenixDB
         }
         
     }
+    public void addMedicalHistory(MedicalHistory m)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("insert into MedicalHistory (BloodType,CurrentWeight,CurrentHeight) " +
+            "values(?,?,?);");
+            
+            if(m.getBloodType() != null)
+            {
+            	pst.setString(1, m.getBloodType());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+            
+            if(m.getCurrentWeight() != null)
+            {
+            	pst.setString(2, m.getCurrentWeight());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+            
+            if(m.getCurrentHeight() != null)
+            {
+            	pst.setString(3, m.getCurrentHeight());
+            }
+            else
+            {
+            	pst.setNull(3, Types.NULL);
+            }
+                                   
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public void updateMedicalHistory(MedicalHistory m)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("update MedicalHistory set BloodType = ?,CurrentWeight = ?,CurrentHeight = ? " +
+            "where MedicalHistoryID = ?;");
+                        
+            if(m.getBloodType() != null)
+            {
+            	pst.setString(1, m.getBloodType());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+            
+            if(m.getCurrentWeight() != null)
+            {
+            	pst.setString(2, m.getCurrentWeight());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+            
+            if(m.getCurrentHeight() != null)
+            {
+            	pst.setString(3, m.getCurrentHeight());
+            }
+            else
+            {
+            	pst.setNull(3, Types.NULL);
+            }
+            
+            if(p.getPersonID() != null)
+            {
+            	pst.setInt(4, p.getPersonID());
+            }
+            else
+            {
+            	pst.setNull(4, Types.NULL);
+            }
+            
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public ArrayList<MedicalHistory> getMedicalHistorys()
+    {
+        ArrayList<MedicalHistory> MedicalHistorys = new ArrayList<MedicalHistory>();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from MedicalHistory;");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+                MedicalHistory m = new MedicalHistory();
+                
+                m.setMedicalHistoryID(rs.getInt("MedicalHistoryID"));
+                m.setBloodType(rs.getString("BloodType"));
+                m.setCurrentWeight(rs.getString("CurrentWeight"));
+                m.setCurrentHeight(rs.getString("CurrentHeight"));
+                m.setPersonID(rs.getInt("PersonID"));
+                
+                MedicalHistorys.add(m);
+                
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return MedicalHistorys;
+    }
+    public MedicalHistory getMedicalHistory(String id)
+    {
+        MedicalHistory m = new MedicalHistory();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from MedicalHistory where MedicalHistoryID = '" + id + "';");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+                m.setMedicalHistoryID(Integer.parseInt(id));
+                m.setBloodType(rs.getString("BloodType"));
+                m.setCurrentWeight(rs.getString("CurrentWeight"));
+                m.setCurrentHeight(rs.getString("CurrentHeight"));
+                m.setPersonID(Integer.parseInt(id));
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return m;
+    }
+    public void deleteMedicalHistory(String id)
+    {        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("delete from MedicalHistory where MedicalHistoryID = '" + id + "';");  
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+    }
+    public void addPhoneNumber(PhoneNumber p)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("insert into PhoneNumber (Pnumber,Type) " +
+            "values(?,?);");
+            
+            if(p.getPnumber() != null)
+            {
+            	pst.setString(1, p.getPnumber());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+            
+            if(p.getType() != null)
+            {
+            	pst.setString(2, p.getType());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+                                    
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public void updatePhoneNumber(PhoneNumber p)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("update person set Fname = ?,Mname = ?,Lname = ?,Gender = ?,DOB = ?,SSN = ?,Type = ? " +
+            "where PhoneNumberID = ?;");
+                        
+            if(p.getPnumber() != null)
+            {
+            	pst.setString(1, p.getPnumber());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+            
+            if(p.getType() != null)
+            {
+            	pst.setString(2, p.getType());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+                        
+            if(p.getPersonID() != null)
+            {
+            	pst.setInt(3, p.getPersonID());
+            }
+            else
+            {
+            	pst.setNull(3, Types.NULL);
+            }
+            
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public ArrayList<PhoneNumber> getPhoneNumbers()
+    {
+        ArrayList<PhoneNumber> phonenumbers = new ArrayList<PhoneNumber>();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from phonenumber;");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+                PhoneNumber p = new PhoneNumber();
+                
+                p.setPhoneNumberID(rs.getInt("PhoneNumberID"));
+                p.setPnumber(rs.getString("Pnumber"));
+                p.setType(rs.getString("Type"));
+                p.setPersonID(rs.getInt("PersonID"));
+                
+                phonenumbers.add(p);
+                
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return phonenumbers;
+    }
+    public PhoneNumber getPhoneNumber(String id)
+    {
+        PhoneNumber p = new PhoneNumber();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from phonenumber where PhoneNumberID = '" + id + "';");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+                p.setPhoneNumberID(Integer.parseInt(id));
+                p.setPnumber(rs.getString("Pnumber"));
+                p.setType(rs.getString("Type"));
+                p.setPersonID(Integer.parseInt(id));
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return p;
+    }
+    public void deletePhoneNumber(String id)
+    {        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("delete from phonenumber where PhoneNumberID = '" + id + "';");  
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+    }
+    public void addRecentSurgery(RecentSurgery r)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("insert into RecentSurgery (Name) " +
+            "values(?);");
+            
+            if(r.getName() != null)
+            {
+            	pst.setString(1, r.getName());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+                                    
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public void updateRecentSurgery(RecentSurgery r)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("update recentsurgery set Name = ? " +
+            "where RSID = ?;");
+                        
+            if(r.getName() != null)
+            {
+            	pst.setString(1, r.getName());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+                        
+            if(r.getPersonID() != null)
+            {
+            	pst.setInt(2, r.getPersonID());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+            
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public ArrayList<RecentSurgery> getRecentSurgeries()
+    {
+        ArrayList<RecentSurgery> recentsurgeries = new ArrayList<RecentSurgery>();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from recentsurgery;");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+                RecentSurgery r = new RecentSurgery();
+                
+                r.setRSID(rs.getInt("RSID"));
+                r.setName(rs.getString("Name"));
+                r.setPersonID(rs.getInt("PersonID"));
+                
+                recentsurgeries.add(r);
+                
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return recentsurgeries;
+    }
+    public RecentSurgery getRecentSurgery(String id)
+    {
+        RecentSurgery r = new RecentSurgery();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from recentsurgery where RSID = '" + id + "';");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+                r.setRSID(Integer.parseInt(id));
+                r.setName(rs.getString("Name"));
+                r.setPersonID(Integer.parseInt(id));
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return r;
+    }
+    public void deleteRecentSurgery(String id)
+    {        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("delete from recentsurgery where RSID = '" + id + "';");  
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+    }
+    public void addVisit(Visit v)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("insert into Visit (DateOfVisit,Height,BloodPressure,Weight,Result,Type) " +
+            "values(?,?,?,?,?,?);");
+            
+            if(v.getDateOfVisit() != null)
+            {
+            	pst.setString(1, v.getDateOfVisit());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+            
+            if(v.getHeight() != null)
+            {
+            	pst.setString(2, v.getHeight());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+            
+            if(v.getBloodPressure() != null)
+            {
+            	pst.setString(3, v.getBloodPressure());
+            }
+            else
+            {
+            	pst.setNull(3, Types.NULL);
+            }
+            
+            if(v.getWeight() != null)
+            {
+            	pst.setString(4, v.getWeight());
+            }
+            else
+            {
+            	pst.setNull(4, Types.NULL);
+            }
+            
+            if(v.getResult() != null)
+            {
+            	pst.setString(5, v.getResult());
+            }
+            else
+            {
+            	pst.setNull(5, Types.NULL);
+            }
+            
+            if(v.getType() != null)
+            {
+            	pst.setString(6, v.getType());
+            }
+            else
+            {
+            	pst.setNull(6, Types.NULL);
+            }
+                                                
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public void updateVisit(Visit v)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("update visit set DateOfVisit = ?,Height = ?,BloodPressure = ?,Weight = ?,Result = ?,Type = ? " +
+            "where VisitID = ?;");
+                        
+            if(v.getDateOfVisit() != null)
+            {
+            	pst.setString(1, v.getDateOfVisit());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+            
+            if(v.getHeight() != null)
+            {
+            	pst.setString(2, v.getHeight());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+            
+            if(v.getBloodPressure() != null)
+            {
+            	pst.setString(3, v.getBloodPressure());
+            }
+            else
+            {
+            	pst.setNull(3, Types.NULL);
+            }
+            
+            if(v.getWeight() != null)
+            {
+            	pst.setString(4, v.getWeight());
+            }
+            else
+            {
+            	pst.setNull(4, Types.NULL);
+            }
+            
+            if(v.getResult() != null)
+            {
+            	pst.setString(5, v.getResult());
+            }
+            else
+            {
+            	pst.setNull(5, Types.NULL);
+            }
+            
+            if(v.getType() != null)
+            {
+            	pst.setString(6, v.getType());
+            }
+            else
+            {
+            	pst.setNull(6, Types.NULL);
+            }
+            
+            if(v.getPersonID() != null)
+            {
+            	pst.setInt(7, v.getPersonID());
+            }
+            else
+            {
+            	pst.setNull(7, Types.NULL);
+            }
+            
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public ArrayList<Visit> getVisits()
+    {
+        ArrayList<Visit> Visits = new ArrayList<Visit>();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from visit;");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+                Visit v = new Visit();
+                
+                v.setVisitID(rs.getInt("VisitID"));
+                v.setDateOfVisit(rs.getString("DateOfVisit"));
+                v.setHeight(rs.getString("Height"));
+                v.setBloodPressure(rs.getString("BloodPressure"));
+                v.setWeight(rs.getString("Weight"));
+                v.setResult(rs.getLong("Result"));
+                v.setType(rs.getString("Type"));
+                v.setPersonID(rs.getInt("PersonID"));
+                
+                visits.add(v);
+                
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return visits;
+    }
+    public Visit getVisit(String id)
+    {
+        Visit v = new Visit();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from visit where VisitID = '" + id + "';");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+            	v.setVisitID(rs.getInt("VisitID"));
+                v.setDateOfVisit(rs.getString("DateOfVisit"));
+                v.setHeight(rs.getString("Height"));
+                v.setBloodPressure(rs.getString("BloodPressure"));
+                v.setWeight(rs.getString("Weight"));
+                v.setResult(rs.getLong("Result"));
+                v.setType(rs.getString("Type"));
+                v.setPersonID(rs.getInt("PersonID"));
+                
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return v;
+    }
+    public void deleteVisit(String id)
+    {        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("delete from visit where VisitID = '" + id + "';");  
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+    }
+    public void addBilling(Billing b)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("insert into Billing (IsInsurance,CreditCardNumber,ExpirationDate,CSV,ProviderId,PlanCode,GroupCode) " +
+            "values(?,?,?,?,?,?,?);");
+            
+            if(b.getIsInsurance() != null)
+            {
+            	pst.setString(1, b.getIsInsurance());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+            
+            if(b.getCreditCardNumber() != null)
+            {
+            	pst.setString(2, b.getCreditCardNumber());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+            
+            if(b.getExpirationDate() != null)
+            {
+            	pst.setString(3, b.getExpirationDate());
+            }
+            else
+            {
+            	pst.setNull(3, Types.NULL);
+            }
+            
+            if(b.getCSV() != null)
+            {
+            	pst.setString(4, b.getCSV());
+            }
+            else
+            {
+            	pst.setNull(4, Types.NULL);
+            }
+            
+            if(b.getProviderId() != null)
+            {
+            	pst.setString(5, b.getProviderId());
+            }
+            else
+            {
+            	pst.setNull(5, Types.NULL);
+            }
+            
+            if(b.getPlanCode() != null)
+            {
+            	pst.setString(6, b.getPlanCode());
+            }
+            else
+            {
+            	pst.setNull(6, Types.NULL);
+            }
+            
+            if(b.getGroupCode() != null)
+            {
+            	pst.setString(7, b.getGroupCode());
+            }
+            else
+            {
+            	pst.setNull(7, Types.NULL);
+            }
+                        
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public void updateBilling(Billing b)
+    {
+        try
+        {       
+            con = dataSource.getConnection();
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("update billing set IsInsurance = ?,CreditCardNumber = ?,ExpirationDate = ?,CSV = ?,ProviderId = ?,PlanCode = ?,GroupCode = ? " +
+            "where BillingID = ?;");
+                        
+            if(b.getIsInsurance() != null)
+            {
+            	pst.setString(1, b.getIsInsurance());
+            }
+            else
+            {
+            	pst.setNull(1, Types.NULL);
+            }
+            
+            if(b.getCreditCardNumber() != null)
+            {
+            	pst.setString(2, b.getCreditCardNumber());
+            }
+            else
+            {
+            	pst.setNull(2, Types.NULL);
+            }
+            
+            if(b.getExpirationDate() != null)
+            {
+            	pst.setString(3, b.getExpirationDate());
+            }
+            else
+            {
+            	pst.setNull(3, Types.NULL);
+            }
+            
+            if(b.getCSV() != null)
+            {
+            	pst.setString(4, b.getCSV());
+            }
+            else
+            {
+            	pst.setNull(4, Types.NULL);
+            }
+            
+            if(b.getProviderId() != null)
+            {
+            	pst.setString(5, b.getProviderId());
+            }
+            else
+            {
+            	pst.setNull(5, Types.NULL);
+            }
+            
+            if(b.getPlanCode() != null)
+            {
+            	pst.setString(6, b.getPlanCode());
+            }
+            else
+            {
+            	pst.setNull(6, Types.NULL);
+            }
+            
+            if(b.getGroupCode() != null)
+            {
+            	pst.setString(7, b.getGroupCode());
+            }
+            else
+            {
+            	pst.setNull(7, Types.NULL);
+            }
+            
+            if(b.getPersonID() != null)
+            {
+            	pst.setInt(8, b.getPersonID());
+            }
+            else
+            {
+            	pst.setNull(8, Types.NULL);
+            }
+            
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }        
+    }
+    public ArrayList<Billing> getBillings()
+    {
+        ArrayList<Billing> Billingss = new ArrayList<Billing>();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from billing;");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+                Billing b = new Billing();
+                
+                b.setBillingID(rs.getInt("BillinbID"));
+                b.setIsInsurance(rs.getString("IsInsurance"));
+                b.setCreditCardNumber(rs.getString("CreditCardNumber"));
+                b.setExpirationDate(rs.getString("ExpirationDate"));
+                b.setCSV(rs.getString("CSV"));
+                b.setProviderId(rs.getLong("ProviderId"));
+                b.setPlanCode(rs.getString("PlanCode"));
+                b.setGroupCode(rs.getString("GroupCode"));
+                b.setPersonID(rs.getInt("PersonID"));
+                
+                billings.add(b);
+                
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return billings;
+    }
+    public Billing getBilling(String id)
+    {
+        Billing b = new Billing();
+        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("select * from billing where BillingID = '" + id + "';");
+            rs = pst.executeQuery();
+
+            while (rs.next()) 
+            {
+            	b.setBillingID(rs.getInt("BillinbID"));
+                b.setIsInsurance(rs.getString("IsInsurance"));
+                b.setCreditCardNumber(rs.getString("CreditCardNumber"));
+                b.setExpirationDate(rs.getString("ExpirationDate"));
+                b.setCSV(rs.getString("CSV"));
+                b.setProviderId(rs.getLong("ProviderId"));
+                b.setPlanCode(rs.getString("PlanCode"));
+                b.setGroupCode(rs.getString("GroupCode"));
+                b.setPersonID(rs.getInt("PersonID"));
+            }
+
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+        return b;
+    }
+    public void deleteBilling(String id)
+    {        
+        try
+        {       
+            con = dataSource.getConnection();
+            pst = con.prepareStatement("delete from billing where BillingID = '" + id + "';");  
+            pst.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally 
+        {
+
+            try
+            {
+                if (rs != null) 
+                {
+                    rs.close();
+                }
+                if (pst != null) 
+                {
+                    pst.close();
+                }
+                if (con != null) 
+                {
+                    con.close();
+                }
+
+            } 
+            catch (SQLException ex) 
+            {
+                
+            }
+        }
+        
+    }
     
 }
 
