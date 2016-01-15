@@ -1,3 +1,4 @@
+package UnicornPhoenix.Database;
 
 public class Email {
 private String Email;

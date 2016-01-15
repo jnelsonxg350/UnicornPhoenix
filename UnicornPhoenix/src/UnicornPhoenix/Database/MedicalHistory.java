@@ -1,3 +1,4 @@
+package UnicornPhoenix.Database;
 
 public class MedicalHistory {
 private String bloodType;

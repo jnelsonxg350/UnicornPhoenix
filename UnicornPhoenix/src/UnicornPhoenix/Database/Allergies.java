@@ -1,3 +1,4 @@
+package UnicornPhoenix.Database;
 
 public class Allergies {
 	private String Name;

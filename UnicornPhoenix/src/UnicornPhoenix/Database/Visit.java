@@ -1,3 +1,4 @@
+package UnicornPhoenix.Database;
 
 public class Visit {
 private String dateOfVisit;
