@@ -2,22 +2,23 @@ package UnicornPhoenix.Database;
 
 public class Allergies {
 	private String Name;
-	private int personID;
-	private int allergyID;
-	}
-public String getPnumber() {
-	return Pnumber;
-}
-public void setType(String type) {
-	this.type = type;}
-	public String gettype() {
-		return type;
-	}
-	public void setCity(String City) {
-		this.City = City;}
+	private int PersonID;
+	private int AllergyID;
 	
-		public String getState() {
-	return getState();
+public String getName() {
+	return Name;
 }
-public void setState(String state) {
-	this.State = state;
+public void setName(String Name ) {
+	this.Name =Name ;}
+
+public int getPersonID() {
+	return PersonID ;
+}
+public void setPersonID(int PersonID ) {
+	this.PersonID =PersonID ;}
+public int getAllergyID() {
+	return AllergyID ;}
+
+public void setAllergyID(int AllergyID ) {
+	this.AllergyID =AllergyID ;}
+}

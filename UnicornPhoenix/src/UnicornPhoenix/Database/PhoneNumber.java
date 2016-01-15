@@ -2,28 +2,29 @@ package UnicornPhoenix.Database;
 
 public class PhoneNumber {
    private String Pnumber;
-   private String type;
-   private int phoneNumberId;
-   private int PersonId;
-private Object City;
-private String State;
-private String Zip;
+   private String Type;
+   private int PhoneNumberID;
+   private int PersonID;
    
-
- 
-	public void setCity(String City) {
-		this.City = City;}
+   public String getPnumber() {
+		return Pnumber;
+	}
+	public void setPnumber(String Pnumber ) {
+		this.Pnumber = Pnumber ;}
+	public String getType() {
+		return Type;
+	}
+	public void setType(String Type ) {
+		this.Type =Type ;}
+   public int getPhoneNumberID() {
+		return PhoneNumberID;
+	}
+	public void setPhoneNumberID (int PhoneNumberID ) {
+		this.PhoneNumberID =PhoneNumberID ;}
 	
-		public String getState() {
-	return getState();
-}
-public void setState(String state) {
-	this.State = state;
-}
-public String getZip() {
-	return getZip();
-}
-public void setZip(String zip) {
-	this.Zip = zip;
-}
+	public int getPersonID() {
+		return PersonID;
+	}
+	public void setPersonID(int PersonID ) {
+		this.PersonID = PersonID ;}
 }
