@@ -4,20 +4,19 @@ private String bloodType;
 private String currentHeight;
 private String currentWeight;
 private int PersonID;
+private String type;
+
+public String getMedicalHistoy() {
+	return getMedicalHistoy();
 }
-public String getPnumber() {
-	return Pnumber;
-}
-public void setType(String type) {
-	this.type = type;}
-	public String gettype() {
-		return type;
+	public String getBloodType() {
+		return getBloodType();
 	}
-	public void setCity(String City) {
-		this.City = City;}
-	
-		public String getState() {
-	return getState();
+	public String getCurrentHeight() {
+		return getCurrentHeight();}
+		
+		public String getCurrentWeight() {
+			return getCurrentWeight();
+		}
 }
-public void setState(String state) {
-	this.State = state;
+	
