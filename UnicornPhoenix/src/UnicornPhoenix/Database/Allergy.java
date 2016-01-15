@@ -1,6 +1,6 @@
 package UnicornPhoenix.Database;
 
-public class Allergies {
+public class Allergy {
 	private String Name;
 	private int PersonID;
 	private int AllergyID;

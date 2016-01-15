@@ -1,6 +1,6 @@
 package UnicornPhoenix.Database;
 
-public class RecentSurgerys {
+public class RecentSurgery {
 private String Type;
 private int PersonID;
 private int RSID;

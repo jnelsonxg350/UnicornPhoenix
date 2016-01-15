@@ -198,7 +198,7 @@ public class UnicornPhoenixDB
             	pst.setNull(7, Types.NULL);
             }
             
-            if(p.getPersonID() != null)
+            if(p.getPersonID() != 0)
             {
             	pst.setInt(8, p.getPersonID());
             }

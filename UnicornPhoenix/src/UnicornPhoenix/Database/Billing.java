@@ -1,6 +1,6 @@
 package UnicornPhoenix.Database;
 
-public class BillingInformation {
+public class Billing {
 private boolean IsInsurance;
 private String EcNumber;
 private String ExpirationDate;
