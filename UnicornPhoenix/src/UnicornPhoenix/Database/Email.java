@@ -1,30 +1,33 @@
 package UnicornPhoenix.Database;
 
 public class Email {
-private String Email;
-private String Type;
-private int EmailID;
-private int PersonID;
+	private String Email;
+	private String Type;
+	private int EmailID;
+	private int PersonID;
+	public String getEmail() {
+		return Email;
+	}
+	public void setEmail(String email) {
+		Email = email;
+	}
+	public String getType() {
+		return Type;
+	}
+	public void setType(String type) {
+		Type = type;
+	}
+	public int getEmailID() {
+		return EmailID;
+	}
+	public void setEmailID(int emailID) {
+		EmailID = emailID;
+	}
+	public int getPersonID() {
+		return PersonID;
+	}
+	public void setPersonID(int personID) {
+		PersonID = personID;
+	}
 
-public String getEmail() {
-	return getEmail();
-}
-public void setEmail(String Email) {
-	this.Email =Email;}
-public String getType() {
-	return getType();
-}
-public void setType(String Type) {
-	this.Type =Type ;}
-
-public int getEmailID() {
-	return EmailID ;
-}
-public void setEmailID(int EmailID ) {
-	this.EmailID =EmailID ;}
-public int get() {
-	return EmailID ;
-}
-public void setPersonID(int PersonID ) {
-	this.PersonID =PersonID ;}
 }

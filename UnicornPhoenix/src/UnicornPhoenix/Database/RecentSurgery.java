@@ -1,24 +1,27 @@
 package UnicornPhoenix.Database;
 
 public class RecentSurgery {
-private String Type;
-private int PersonID;
-private int RSID;
+	private String Name;
+	private int PersonID;
+	private int RSID;
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	public int getPersonID() {
+		return PersonID;
+	}
+	public void setPersonID(int personID) {
+		PersonID = personID;
+	}
+	public int getRSID() {
+		return RSID;
+	}
+	public void setRSID(int rSID) {
+		RSID = rSID;
+	}
 
-
-public String getType() {
-	return getType();
-}
-public void setType(String Type ) {
-	this.Type =Type ;}
-public int getPersonID() {
-	return PersonID ;
-}
-public void set(int PersonID ) {
-	this.PersonID =PersonID ;}
-public int getRSID() {
-	return RSID ;
-}
-public void setRSID(int RSID ) {
-	this.RSID =RSID ;}
+	
 }

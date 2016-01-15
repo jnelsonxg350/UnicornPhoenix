@@ -1,54 +1,64 @@
 package UnicornPhoenix.Database;
 
+import java.sql.Date;
+
 public class Visit {
-private String dateOfVisit;
-private String Height;
-private String BloodPressure;
-private String Weight;
-private String Result;
-private String Type;
-private int PersonID;
-private int VisitID;
+	private Date dateOfVisit;
+	private int Height;
+	private int BloodPressure;
+	private int Weight;
+	private String Result;
+	private String Type;
+	private int PersonID;
+	private int VisitID;
+	public Date getDateOfVisit() {
+		return dateOfVisit;
+	}
+	public void setDateOfVisit(Date dateOfVisit) {
+		this.dateOfVisit = dateOfVisit;
+	}
+	public int getHeight() {
+		return Height;
+	}
+	public void setHeight(int height) {
+		Height = height;
+	}
+	public int getBloodPressure() {
+		return BloodPressure;
+	}
+	public void setBloodPressure(int bloodPressure) {
+		BloodPressure = bloodPressure;
+	}
+	public int getWeight() {
+		return Weight;
+	}
+	public void setWeight(int weight) {
+		Weight = weight;
+	}
+	public String getResult() {
+		return Result;
+	}
+	public void setResult(String result) {
+		Result = result;
+	}
+	public String getType() {
+		return Type;
+	}
+	public void setType(String type) {
+		Type = type;
+	}
+	public int getPersonID() {
+		return PersonID;
+	}
+	public void setPersonID(int personID) {
+		PersonID = personID;
+	}
+	public int getVisitID() {
+		return VisitID;
+	}
+	public void setVisitID(int visitID) {
+		VisitID = visitID;
+	}
 
-public String getDateOfVisit() {
-	return getDateOfVisit();
-}
-public String getHeight() {
-	return getHeight();
-}
-public void setHeight(String Height ) {
-	this.Height =Height ;}
-public String getBloodPressure() {
-	return getBloodPressure();
-}
-public void setBloodPressure(String BloodPressure ) {
-	this.BloodPressure =BloodPressure ;}
-
-public String getWeight() {
-	return getWeight();
-}
-public void setWeight(String Weight) {
-	this.Weight =Weight ;}
-
-public String getResult() {
-	return getResult();
-}
-public void setResult(String Result) {
-	this.Result =Result ;}
-public String getType() {
-	return getType();
-}
-public void setType(String Type ) {
-	this.Type =Type ;}
-
-public int getPersonID() {
-	return PersonID ;
-}
-public void setPersonID(int PersonID ) {
-	this.PersonID = PersonID;}
-public int getVisitID() {
-	return VisitID ;
-}
-public void setVisitID(int VisitID ) {
-	this.VisitID =VisitID ;}
+	
 }

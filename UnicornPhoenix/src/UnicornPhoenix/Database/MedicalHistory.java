@@ -1,40 +1,43 @@
 package UnicornPhoenix.Database;
 
 public class MedicalHistory {
-private String BloodType;
-private String CurrentHeight;
-private String CurrentWeight;
-private int PersonID;
-private String Type;
-
-public String getMedicalHistoy() {
-	return getMedicalHistoy();
-}
-
+	private String BloodType;
+	private int CurrentHeight;
+	private int CurrentWeight;
+	private int PersonID;
+	private int MedicalHistoryID;
 	public String getBloodType() {
-		return getBloodType();
+		return BloodType;
 	}
-	public void setBloodType(String BloodType ) {
-		this.BloodType =BloodType ;}
-	public String getCurrentHeight() {
-		return getCurrentHeight();}
-	public void setCurrentHeight(String CurrentHeight ) {
-			this.CurrentHeight =CurrentHeight;}
-		
-		public String getCurrentWeight() {
-			return getCurrentWeight();
-		}
-		public void setCurrentWeight(String CurrentWeight ) {
-			this.CurrentWeight =CurrentWeight ;}
+	public void setBloodType(String bloodType) {
+		BloodType = bloodType;
+	}
+	public int getCurrentHeight() {
+		return CurrentHeight;
+	}
+	public void setCurrentHeight(int currentHeight) {
+		CurrentHeight = currentHeight;
+	}
+	public int getCurrentWeight() {
+		return CurrentWeight;
+	}
+	public void setCurrentWeight(int currentWeight) {
+		CurrentWeight = currentWeight;
+	}
+	public int getPersonID() {
+		return PersonID;
+	}
+	public void setPersonID(int personID) {
+		PersonID = personID;
+	}
+	public int getMedicalHistoryID() {
+		return MedicalHistoryID;
+	}
+	public void setMedicalHistoryID(int medicalHistoryID) {
+		MedicalHistoryID = medicalHistoryID;
+	}
+	
+	
 
-public String getType() {
-	return Type ;
-}
-public void setType(String Type ) {
-	this.Type =Type ;}
-public int getPersonID() {
-	return PersonID ;
-}
-public void setPersonID(int PersonID ) {
-	this.PersonID =PersonID ;}
+	
 }

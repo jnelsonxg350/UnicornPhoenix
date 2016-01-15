@@ -22,7 +22,7 @@ public class UnicornPhoenixDB
         dataSource.setUser("root");
         dataSource.setPassword("");
         dataSource.setServerName("localhost");
-        dataSource.setDatabaseName("UnicornPhoenix");
+        dataSource.setDatabaseName("unicornpheonix");
     }
     public void addPerson(Person p)
     {
@@ -31,7 +31,7 @@ public class UnicornPhoenixDB
             con = dataSource.getConnection();
             pst = con.prepareStatement("insert into Person (Fname,Mname,Lname,Gender,DOB,SSN,Type) " +
             "values(?,?,?,?,?,?,?);");
-            
+           
             if(p.getFname() != null)
             {
             	pst.setString(1, p.getFname());
@@ -70,7 +70,7 @@ public class UnicornPhoenixDB
             
             if(p.getDOB() != null)
             {
-            	pst.setString(5, p.getDOB());
+            	pst.setDate(5, p.getDOB());
             }
             else
             {
@@ -173,7 +173,7 @@ public class UnicornPhoenixDB
             
             if(p.getDOB() != null)
             {
-            	pst.setString(5, p.getDOB());
+            	pst.setDate(5, p.getDOB());
             }
             else
             {
@@ -253,11 +253,11 @@ public class UnicornPhoenixDB
                 Person p = new Person();
                 
                 p.setPersonID(rs.getInt("PersonID"));
-                p.setFname(rs.getString("firstname"));
-                p.setMname(rs.getString("middlename"));
-                p.setLname(rs.getString("lastname"));
+                p.setFname(rs.getString("fname"));
+                p.setMname(rs.getString("mname"));
+                p.setLname(rs.getString("lname"));
                 p.setGender(rs.getString("gender"));
-                p.setDOB(rs.getLong("DOB"));
+                p.setDOB(rs.getDate("DOB"));
                 p.setSSN(rs.getString("SSN"));
                 p.setType(rs.getString("type"));
                 
@@ -310,11 +310,11 @@ public class UnicornPhoenixDB
             while (rs.next()) 
             {
                 p.setPersonID(Integer.parseInt(id));
-                p.setFname(rs.getString("firstname"));
-                p.setMname(rs.getString("middlename"));
-                p.setLname(rs.getString("lastname"));
+                p.setFname(rs.getString("fname"));
+                p.setMname(rs.getString("mname"));
+                p.setLname(rs.getString("lname"));
                 p.setGender(rs.getString("gender"));
-                p.setDOB(rs.getLong("DOB"));
+                p.setDOB(rs.getDate("DOB"));
                 p.setSSN(rs.getString("SSN"));
                 p.setType(rs.getString("type"));
             }
@@ -628,7 +628,7 @@ public class UnicornPhoenixDB
                 a.setCity(rs.getString("city"));
                 a.setState(rs.getString("state"));
                 a.setZip(rs.getString("zip"));
-                a.setType(rs.getDate("type"));
+                a.setType(rs.getString("type"));
                 
                 addresses.add(a);
                 
@@ -683,7 +683,7 @@ public class UnicornPhoenixDB
                 a.setCity(rs.getString("city"));
                 a.setState(rs.getString("state"));
                 a.setZip(rs.getString("zip"));
-                a.setType(rs.getDate("type"));
+                a.setType(rs.getString("type"));
             }
 
         } 
@@ -773,9 +773,9 @@ public class UnicornPhoenixDB
             	pst.setNull(1, Types.NULL);
             }
             
-            if(a.getPersonID() != null)
+            if(a.getPersonID() != 0)
             {
-            	pst.setString(2, a.getPersonID());
+            	pst.setInt(2, a.getPersonID());
             }
             else
             {
@@ -831,16 +831,16 @@ public class UnicornPhoenixDB
             	pst.setNull(1, Types.NULL);
             }
             
-            if(a.getPersonID() != null)
+            if(a.getPersonID() != 0)
             {
-            	pst.setString(2, a.getPersonID());
+            	pst.setInt(2, a.getPersonID());
             }
             else
             {
             	pst.setNull(2, Types.NULL);
             }
                         
-            if(a.getAllergyID() != null)
+            if(a.getAllergyID() != 0)
             {
             	pst.setInt(3, a.getAllergyID());
             }
@@ -896,7 +896,7 @@ public class UnicornPhoenixDB
                 
                 a.setAllergyID(rs.getInt("AllergyID"));
                 a.setName(rs.getString("name"));
-                a.setPersonID(rs.getString("PersonID"));
+                a.setPersonID(rs.getInt("PersonID"));
                 
                 Allergies.add(a);
                 
@@ -948,7 +948,7 @@ public class UnicornPhoenixDB
             {
                 a.setAllergyID(Integer.parseInt(id));
                 a.setName(rs.getString("name"));
-                a.setPersonID(rs.getString("PersonID"));
+                a.setPersonID(rs.getInt("PersonID"));
             }
 
         } 
@@ -1106,7 +1106,7 @@ public class UnicornPhoenixDB
             }
             
             
-            if(e.getPersonID() != null)
+            if(e.getPersonID() != 0)
             {
             	pst.setInt(3, e.getPersonID());
             }
@@ -1163,7 +1163,7 @@ public class UnicornPhoenixDB
                 e.setEmailID(rs.getInt("EmailID"));
                 e.setEmail(rs.getString("email"));
                 e.setType(rs.getString("Type"));
-                e.setPersonID(rs.getString("PersonID"));
+                e.setPersonID(rs.getInt("PersonID"));
                 
                 emails.add(e);
                 
@@ -1216,7 +1216,7 @@ public class UnicornPhoenixDB
                 e.setEmailID(Integer.parseInt(id));
                 e.setEmail(rs.getString("email"));
                 e.setType(rs.getString("type"));
-                e.setPersonID(rs.getString("PersonID"));
+                e.setPersonID(rs.getInt("PersonID"));
             }
 
         } 
@@ -1306,18 +1306,18 @@ public class UnicornPhoenixDB
             	pst.setNull(1, Types.NULL);
             }
             
-            if(m.getCurrentWeight() != null)
+            if(m.getCurrentWeight() != 0)
             {
-            	pst.setString(2, m.getCurrentWeight());
+            	pst.setInt(2, m.getCurrentWeight());
             }
             else
             {
             	pst.setNull(2, Types.NULL);
             }
             
-            if(m.getCurrentHeight() != null)
+            if(m.getCurrentHeight() != 0)
             {
-            	pst.setString(3, m.getCurrentHeight());
+            	pst.setInt(3, m.getCurrentHeight());
             }
             else
             {
@@ -1373,27 +1373,27 @@ public class UnicornPhoenixDB
             	pst.setNull(1, Types.NULL);
             }
             
-            if(m.getCurrentWeight() != null)
+            if(m.getCurrentWeight() != 0)
             {
-            	pst.setString(2, m.getCurrentWeight());
+            	pst.setInt(2, m.getCurrentWeight());
             }
             else
             {
             	pst.setNull(2, Types.NULL);
             }
             
-            if(m.getCurrentHeight() != null)
+            if(m.getCurrentHeight() != 0)
             {
-            	pst.setString(3, m.getCurrentHeight());
+            	pst.setInt(3, m.getCurrentHeight());
             }
             else
             {
             	pst.setNull(3, Types.NULL);
             }
             
-            if(p.getPersonID() != null)
+            if(m.getPersonID() != 0)
             {
-            	pst.setInt(4, p.getPersonID());
+            	pst.setInt(4, m.getPersonID());
             }
             else
             {
@@ -1447,8 +1447,8 @@ public class UnicornPhoenixDB
                 
                 m.setMedicalHistoryID(rs.getInt("MedicalHistoryID"));
                 m.setBloodType(rs.getString("BloodType"));
-                m.setCurrentWeight(rs.getString("CurrentWeight"));
-                m.setCurrentHeight(rs.getString("CurrentHeight"));
+                m.setCurrentWeight(rs.getInt("CurrentWeight"));
+                m.setCurrentHeight(rs.getInt("CurrentHeight"));
                 m.setPersonID(rs.getInt("PersonID"));
                 
                 MedicalHistorys.add(m);
@@ -1501,8 +1501,8 @@ public class UnicornPhoenixDB
             {
                 m.setMedicalHistoryID(Integer.parseInt(id));
                 m.setBloodType(rs.getString("BloodType"));
-                m.setCurrentWeight(rs.getString("CurrentWeight"));
-                m.setCurrentHeight(rs.getString("CurrentHeight"));
+                m.setCurrentWeight(rs.getInt("CurrentWeight"));
+                m.setCurrentHeight(rs.getInt("CurrentHeight"));
                 m.setPersonID(Integer.parseInt(id));
             }
 
@@ -1584,9 +1584,9 @@ public class UnicornPhoenixDB
             pst = con.prepareStatement("insert into PhoneNumber (Pnumber,Type) " +
             "values(?,?);");
             
-            if(p.getPnumber() != null)
+            if(p.getPnumber() != 0)
             {
-            	pst.setString(1, p.getPnumber());
+            	pst.setInt(1, p.getPnumber());
             }
             else
             {
@@ -1642,9 +1642,9 @@ public class UnicornPhoenixDB
             pst = con.prepareStatement("update person set Fname = ?,Mname = ?,Lname = ?,Gender = ?,DOB = ?,SSN = ?,Type = ? " +
             "where PhoneNumberID = ?;");
                         
-            if(p.getPnumber() != null)
+            if(p.getPnumber() != 0)
             {
-            	pst.setString(1, p.getPnumber());
+            	pst.setInt(1, p.getPnumber());
             }
             else
             {
@@ -1660,7 +1660,7 @@ public class UnicornPhoenixDB
             	pst.setNull(2, Types.NULL);
             }
                         
-            if(p.getPersonID() != null)
+            if(p.getPersonID() != 0)
             {
             	pst.setInt(3, p.getPersonID());
             }
@@ -1715,7 +1715,7 @@ public class UnicornPhoenixDB
                 PhoneNumber p = new PhoneNumber();
                 
                 p.setPhoneNumberID(rs.getInt("PhoneNumberID"));
-                p.setPnumber(rs.getString("Pnumber"));
+                p.setPnumber(rs.getInt("Pnumber"));
                 p.setType(rs.getString("Type"));
                 p.setPersonID(rs.getInt("PersonID"));
                 
@@ -1768,7 +1768,7 @@ public class UnicornPhoenixDB
             while (rs.next()) 
             {
                 p.setPhoneNumberID(Integer.parseInt(id));
-                p.setPnumber(rs.getString("Pnumber"));
+                p.setPnumber(rs.getInt("Pnumber"));
                 p.setType(rs.getString("Type"));
                 p.setPersonID(Integer.parseInt(id));
             }
@@ -1909,7 +1909,7 @@ public class UnicornPhoenixDB
             	pst.setNull(1, Types.NULL);
             }
                         
-            if(r.getPersonID() != null)
+            if(r.getPersonID() != 0)
             {
             	pst.setInt(2, r.getPersonID());
             }
@@ -2100,34 +2100,34 @@ public class UnicornPhoenixDB
             
             if(v.getDateOfVisit() != null)
             {
-            	pst.setString(1, v.getDateOfVisit());
+            	pst.setDate(1, v.getDateOfVisit());
             }
             else
             {
             	pst.setNull(1, Types.NULL);
             }
             
-            if(v.getHeight() != null)
+            if(v.getHeight() != 0)
             {
-            	pst.setString(2, v.getHeight());
+            	pst.setInt(2, v.getHeight());
             }
             else
             {
             	pst.setNull(2, Types.NULL);
             }
             
-            if(v.getBloodPressure() != null)
+            if(v.getBloodPressure() != 0)
             {
-            	pst.setString(3, v.getBloodPressure());
+            	pst.setInt(3, v.getBloodPressure());
             }
             else
             {
             	pst.setNull(3, Types.NULL);
             }
             
-            if(v.getWeight() != null)
+            if(v.getWeight() != 0)
             {
-            	pst.setString(4, v.getWeight());
+            	pst.setInt(4, v.getWeight());
             }
             else
             {
@@ -2194,34 +2194,34 @@ public class UnicornPhoenixDB
                         
             if(v.getDateOfVisit() != null)
             {
-            	pst.setString(1, v.getDateOfVisit());
+            	pst.setDate(1, v.getDateOfVisit());
             }
             else
             {
             	pst.setNull(1, Types.NULL);
             }
             
-            if(v.getHeight() != null)
+            if(v.getHeight() != 0)
             {
-            	pst.setString(2, v.getHeight());
+            	pst.setInt(2, v.getHeight());
             }
             else
             {
             	pst.setNull(2, Types.NULL);
             }
             
-            if(v.getBloodPressure() != null)
+            if(v.getBloodPressure() != 0)
             {
-            	pst.setString(3, v.getBloodPressure());
+            	pst.setInt(3, v.getBloodPressure());
             }
             else
             {
             	pst.setNull(3, Types.NULL);
             }
             
-            if(v.getWeight() != null)
+            if(v.getWeight() != 0)
             {
-            	pst.setString(4, v.getWeight());
+            	pst.setInt(4, v.getWeight());
             }
             else
             {
@@ -2246,7 +2246,7 @@ public class UnicornPhoenixDB
             	pst.setNull(6, Types.NULL);
             }
             
-            if(v.getPersonID() != null)
+            if(v.getPersonID() != 0)
             {
             	pst.setInt(7, v.getPersonID());
             }
@@ -2288,7 +2288,7 @@ public class UnicornPhoenixDB
     }
     public ArrayList<Visit> getVisits()
     {
-        ArrayList<Visit> Visits = new ArrayList<Visit>();
+        ArrayList<Visit> visits = new ArrayList<Visit>();
         
         try
         {       
@@ -2301,11 +2301,11 @@ public class UnicornPhoenixDB
                 Visit v = new Visit();
                 
                 v.setVisitID(rs.getInt("VisitID"));
-                v.setDateOfVisit(rs.getString("DateOfVisit"));
-                v.setHeight(rs.getString("Height"));
-                v.setBloodPressure(rs.getString("BloodPressure"));
-                v.setWeight(rs.getString("Weight"));
-                v.setResult(rs.getLong("Result"));
+                v.setDateOfVisit(rs.getDate("DateOfVisit"));
+                v.setHeight(rs.getInt("Height"));
+                v.setBloodPressure(rs.getInt("BloodPressure"));
+                v.setWeight(rs.getInt("Weight"));
+                v.setResult(rs.getString("Result"));
                 v.setType(rs.getString("Type"));
                 v.setPersonID(rs.getInt("PersonID"));
                 
@@ -2358,11 +2358,11 @@ public class UnicornPhoenixDB
             while (rs.next()) 
             {
             	v.setVisitID(rs.getInt("VisitID"));
-                v.setDateOfVisit(rs.getString("DateOfVisit"));
-                v.setHeight(rs.getString("Height"));
-                v.setBloodPressure(rs.getString("BloodPressure"));
-                v.setWeight(rs.getString("Weight"));
-                v.setResult(rs.getLong("Result"));
+                v.setDateOfVisit(rs.getDate("DateOfVisit"));
+                v.setHeight(rs.getInt("Height"));
+                v.setBloodPressure(rs.getInt("BloodPressure"));
+                v.setWeight(rs.getInt("Weight"));
+                v.setResult(rs.getString("Result"));
                 v.setType(rs.getString("Type"));
                 v.setPersonID(rs.getInt("PersonID"));
                 
@@ -2438,7 +2438,7 @@ public class UnicornPhoenixDB
         }
         
     }
-    public void addBilling(Billing b)
+    public void addBilling(BillingInformation b)
     {
         try
         {       
@@ -2446,14 +2446,7 @@ public class UnicornPhoenixDB
             pst = con.prepareStatement("insert into Billing (IsInsurance,CreditCardNumber,ExpirationDate,CSV,ProviderId,PlanCode,GroupCode) " +
             "values(?,?,?,?,?,?,?);");
             
-            if(b.getIsInsurance() != null)
-            {
-            	pst.setString(1, b.getIsInsurance());
-            }
-            else
-            {
-            	pst.setNull(1, Types.NULL);
-            }
+            pst.setBoolean(1, b.isInsurance());
             
             if(b.getCreditCardNumber() != null)
             {
@@ -2466,7 +2459,7 @@ public class UnicornPhoenixDB
             
             if(b.getExpirationDate() != null)
             {
-            	pst.setString(3, b.getExpirationDate());
+            	pst.setDate(3, b.getExpirationDate());
             }
             else
             {
@@ -2482,9 +2475,9 @@ public class UnicornPhoenixDB
             	pst.setNull(4, Types.NULL);
             }
             
-            if(b.getProviderId() != null)
+            if(b.getProviderID() != 0)
             {
-            	pst.setString(5, b.getProviderId());
+            	pst.setInt(5, b.getProviderID());
             }
             else
             {
@@ -2540,7 +2533,7 @@ public class UnicornPhoenixDB
             }
         }        
     }
-    public void updateBilling(Billing b)
+    public void updateBilling(BillingInformation b)
     {
         try
         {       
@@ -2549,14 +2542,7 @@ public class UnicornPhoenixDB
             pst = con.prepareStatement("update billing set IsInsurance = ?,CreditCardNumber = ?,ExpirationDate = ?,CSV = ?,ProviderId = ?,PlanCode = ?,GroupCode = ? " +
             "where BillingID = ?;");
                         
-            if(b.getIsInsurance() != null)
-            {
-            	pst.setString(1, b.getIsInsurance());
-            }
-            else
-            {
-            	pst.setNull(1, Types.NULL);
-            }
+            pst.setBoolean(1, b.isInsurance());
             
             if(b.getCreditCardNumber() != null)
             {
@@ -2569,7 +2555,7 @@ public class UnicornPhoenixDB
             
             if(b.getExpirationDate() != null)
             {
-            	pst.setString(3, b.getExpirationDate());
+            	pst.setDate(3, b.getExpirationDate());
             }
             else
             {
@@ -2585,9 +2571,9 @@ public class UnicornPhoenixDB
             	pst.setNull(4, Types.NULL);
             }
             
-            if(b.getProviderId() != null)
+            if(b.getProviderID() != 0)
             {
-            	pst.setString(5, b.getProviderId());
+            	pst.setInt(5, b.getProviderID());
             }
             else
             {
@@ -2612,7 +2598,7 @@ public class UnicornPhoenixDB
             	pst.setNull(7, Types.NULL);
             }
             
-            if(b.getPersonID() != null)
+            if(b.getPersonID() != 0)
             {
             	pst.setInt(8, b.getPersonID());
             }
@@ -2652,9 +2638,9 @@ public class UnicornPhoenixDB
             }
         }        
     }
-    public ArrayList<Billing> getBillings()
+    public ArrayList<BillingInformation> getBillings()
     {
-        ArrayList<Billing> Billingss = new ArrayList<Billing>();
+        ArrayList<BillingInformation> billings = new ArrayList<BillingInformation>();
         
         try
         {       
@@ -2664,14 +2650,14 @@ public class UnicornPhoenixDB
 
             while (rs.next()) 
             {
-                Billing b = new Billing();
+            	BillingInformation b = new BillingInformation();
                 
                 b.setBillingID(rs.getInt("BillinbID"));
-                b.setIsInsurance(rs.getString("IsInsurance"));
+                b.setIsInsurance(rs.getBoolean("IsInsurance"));
                 b.setCreditCardNumber(rs.getString("CreditCardNumber"));
-                b.setExpirationDate(rs.getString("ExpirationDate"));
+                b.setExpirationDate(rs.getDate("ExpirationDate"));
                 b.setCSV(rs.getString("CSV"));
-                b.setProviderId(rs.getLong("ProviderId"));
+                b.setProviderID(rs.getInt("ProviderId"));
                 b.setPlanCode(rs.getString("PlanCode"));
                 b.setGroupCode(rs.getString("GroupCode"));
                 b.setPersonID(rs.getInt("PersonID"));
@@ -2712,9 +2698,9 @@ public class UnicornPhoenixDB
         
         return billings;
     }
-    public Billing getBilling(String id)
+    public BillingInformation getBilling(String id)
     {
-        Billing b = new Billing();
+    	BillingInformation b = new BillingInformation();
         
         try
         {       
@@ -2725,11 +2711,11 @@ public class UnicornPhoenixDB
             while (rs.next()) 
             {
             	b.setBillingID(rs.getInt("BillinbID"));
-                b.setIsInsurance(rs.getString("IsInsurance"));
+                b.setIsInsurance(rs.getBoolean("IsInsurance"));
                 b.setCreditCardNumber(rs.getString("CreditCardNumber"));
-                b.setExpirationDate(rs.getString("ExpirationDate"));
+                b.setExpirationDate(rs.getDate("ExpirationDate"));
                 b.setCSV(rs.getString("CSV"));
-                b.setProviderId(rs.getLong("ProviderId"));
+                b.setProviderID(rs.getInt("ProviderId"));
                 b.setPlanCode(rs.getString("PlanCode"));
                 b.setGroupCode(rs.getString("GroupCode"));
                 b.setPersonID(rs.getInt("PersonID"));

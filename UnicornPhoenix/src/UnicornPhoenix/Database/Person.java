@@ -1,50 +1,79 @@
 package UnicornPhoenix.Database;
 
-public class Person {
-private String Fname;
-private String Mname;
-private String Lname;
-private String Gender;
-private String DOB;
-private String SSN;
-private String Type;
-private int  PersonID;
+import java.sql.Date;
 
-public String getFname() {
-	return getFname();
-}
-public void setFname(String Fname) {
-	this.Fname = Fname;}
-public String getMname() {
-	return getMname();
-}
-public void setMname(String Mname) {
-	this.Mname =Mname;}
-public String getLname() {
-	return getLname();
-}
-public void setLname(String Lname) {
-	this.Lname = Lname;}
-public String getGender() {
-	return getGender();
-}
-public void setGender(String Gender) {
-	this.Gender = Gender;}
-public String getDOB() {
-	return getDOB();
-}
-public void setDOB(String DOB) {
-	this.DOB = DOB;}
-public String getSSN() {
-	return getSSN();
-}
-public void setSSN(String SSN) {
-	this.SSN = SSN;
-}
-public int getPersonID() {
-	return PersonID ;
-}
-public void setPersonID(int PersonID ) {
-	this.PersonID =PersonID ;}
+public class Person {
+	private String Fname;
+	private String Mname;
+	private String Lname;
+	private String Gender;
+	private Date DOB;
+	private String SSN;
+	private String Type;
+	private int PersonID;
+
+	public String getFname() {
+		return Fname;
+	}
+
+	public void setFname(String fname) {
+		Fname = fname;
+	}
+
+	public String getMname() {
+		return Mname;
+	}
+
+	public void setMname(String mname) {
+		Mname = mname;
+	}
+
+	public String getLname() {
+		return Lname;
+	}
+
+	public void setLname(String lname) {
+		Lname = lname;
+	}
+
+	public String getGender() {
+		return Gender;
+	}
+
+	public void setGender(String gender) {
+		Gender = gender;
+	}
+
+	public Date getDOB() {
+		return DOB;
+	}
+
+	public void setDOB(Date dOB) {
+		DOB = dOB;
+	}
+
+	public String getSSN() {
+		return SSN;
+	}
+
+	public void setSSN(String sSN) {
+		SSN = sSN;
+	}
+
+	public String getType() {
+		return Type;
+	}
+
+	public void setType(String type) {
+		Type = type;
+	}
+
+	public int getPersonID() {
+		return PersonID;
+	}
+
+	public void setPersonID(int personID) {
+		PersonID = personID;
+	}
 
 }

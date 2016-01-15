@@ -19,7 +19,7 @@ public class AllPeople extends Master {
     	body.append("<h1>People</h1>");
 		
     	//start the table
-    	body.append("<table class='table'><caption><button type='button' class='btn btn-default btnAddPerson'>Add Person</button></caption><thead><tr><th></th><th>First Name</th><th>Last Name</th><th>Email</th></tr></thead>");
+    	body.append("<table class='table'><caption><button type='button' class='btn btn-default btnAddPerson'>Add Person</button></caption><thead><tr><th></th><th>First Name</th><th>Last Name</th></tr></thead>");
     	body.append("<tbody>");	
     	
     	////add the people
@@ -28,7 +28,7 @@ public class AllPeople extends Master {
     	for(int i = 0;i<people.size();i++)
     	{
     		Person p = people.get(i);
-        	body.append("<tr><td><button type='button' class='btn btn-primary btn-xs btnEditPerson' data-id='" + p.getPersonID() + "'>Edit</button><button type='button' class='btn btn-primary btn-xs btnDeletePerson' data-id='" + p.getPersonID() + "'>Delete</button></td><td>" + p.getFirstName() + "</td><td>" + p.getLastName() + "</td><td>" + p.getEmailAddress() + "</td></tr>");
+        	body.append("<tr><td><button type='button' class='btn btn-primary btn-xs btnEditPerson' data-id='" + p.getPersonID() + "'>Edit</button><button type='button' class='btn btn-primary btn-xs btnDeletePerson' data-id='" + p.getPersonID() + "'>Delete</button></td><td>" + p.getFname() + "</td><td>" + p.getLname() + "</td></tr>");
     	}
     	
     	//close the table
