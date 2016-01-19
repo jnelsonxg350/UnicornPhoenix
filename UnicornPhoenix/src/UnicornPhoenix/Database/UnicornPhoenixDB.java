@@ -761,7 +761,7 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("insert into Person (Name,PersonID) " +
+            pst = con.prepareStatement("insert into Allergy (Name,PersonID) " +
             "values(?,?);");
             
             if(a.getName() != null)
@@ -1639,7 +1639,7 @@ public class UnicornPhoenixDB
         {       
             con = dataSource.getConnection();
             con = dataSource.getConnection();
-            pst = con.prepareStatement("update person set Fname = ?,Mname = ?,Lname = ?,Gender = ?,DOB = ?,SSN = ?,Type = ? " +
+            pst = con.prepareStatement("update PhoneNumber set Pnumber = ?,Type = ? " +
             "where PhoneNumberID = ?;");
                         
             if(p.getPnumber() != 0)
@@ -2443,7 +2443,7 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("insert into Billing (IsInsurance,CreditCardNumber,ExpirationDate,CSV,ProviderId,PlanCode,GroupCode) " +
+            pst = con.prepareStatement("insert into BillingInformation (IsInsurance,CreditCardNumber,ExpirationDate,CSV,ProviderId,PlanCode,GroupCode) " +
             "values(?,?,?,?,?,?,?);");
             
             pst.setBoolean(1, b.isInsurance());
@@ -2539,7 +2539,7 @@ public class UnicornPhoenixDB
         {       
             con = dataSource.getConnection();
             con = dataSource.getConnection();
-            pst = con.prepareStatement("update billing set IsInsurance = ?,CreditCardNumber = ?,ExpirationDate = ?,CSV = ?,ProviderId = ?,PlanCode = ?,GroupCode = ? " +
+            pst = con.prepareStatement("update billingInformation set IsInsurance = ?,CreditCardNumber = ?,ExpirationDate = ?,CSV = ?,ProviderId = ?,PlanCode = ?,GroupCode = ? " +
             "where BillingID = ?;");
                         
             pst.setBoolean(1, b.isInsurance());
@@ -2645,7 +2645,7 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("select * from billing;");
+            pst = con.prepareStatement("select * from billingInformation;");
             rs = pst.executeQuery();
 
             while (rs.next()) 
@@ -2705,12 +2705,12 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("select * from billing where BillingID = '" + id + "';");
+            pst = con.prepareStatement("select * from billingInformation where BillingInformationID = '" + id + "';");
             rs = pst.executeQuery();
 
             while (rs.next()) 
             {
-            	b.setBillingID(rs.getInt("BillinbID"));
+            	b.setBillingID(rs.getInt("BillingInformationID"));
                 b.setIsInsurance(rs.getBoolean("IsInsurance"));
                 b.setCreditCardNumber(rs.getString("CreditCardNumber"));
                 b.setExpirationDate(rs.getDate("ExpirationDate"));
@@ -2758,7 +2758,7 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("delete from billing where BillingID = '" + id + "';");  
+            pst = con.prepareStatement("delete from billingInformation where BillingInformationID = '" + id + "';");  
             pst.executeUpdate();
         } 
         catch (SQLException ex) 
