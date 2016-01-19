@@ -21,17 +21,18 @@ public class AddBillingInfo extends Master {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//add content
 		body.append("<form id=billingForm>");
-    	body.append("<label for='isInsured'> do you have insurace? :</label>"+
-			    "<label class='checkbox-inline'>"+
-			    "<input type='checkbox' id='isInsuredCheckbox1' value='yes'>Yes </label>"+
-			    "<label class='checkbox-inline'>"+
-			    "<input type='checkbox' id='isInsuredCheckbox2' value='no'>No </label>");
+    	body.append("<label for='IsInsured'> do you have insurace? :</label>"+
+			    "<div class='in-line'><input type='radio' id='isInsured' value='y' name='yesInsured'>Yes </label></div>"+
+			    "<div class='in-line'><input type='radio' id='isnotInsured' value='n' name='notInsured'>No </label></div>");
     	body.append("<div class='form-group'>"+
-			    "<label for='ecNumber'>EC Number:</label>"+
-			    "<input type='text' class='form-control' id='ecNumber' placeholder='xxxxxxxxxxxxxxxx'></div>");
+			    "<label for='CreditCardNmber'>Credit Card Number:</label>"+
+			    "<input type='text' class='form-control' id='creditCardNumber' placeholder='xxxxxxxxxxxxxxxx'></div>");
     	body.append("<div class='form-inline'>"+
 			    "<label for='expdate'>Experation date:</label>"+
 			    "<input type='date' class='form-control' id='expdate'></div>");
+    	body.append("<div class='form-inline'>"+
+			    "<label for='CSV'>CSV </label>"+
+			    "<input type='text' class='form-control' id='CSV'></div>");
     	body.append("<div class='form-group'>"+
 			    "<label for='providerID'>Provider ID </label>"+
 			    "<input type='text' class='form-control' id='providerID'></div>");
