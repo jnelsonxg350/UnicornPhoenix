@@ -1,6 +1,7 @@
 package UnicornPhoenix.Servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import UnicornPhoenix.Database.Allergy;
-import UnicornPhoenix.Database.Person;
 import UnicornPhoenix.Database.UnicornPhoenixDB;
 
-/**
- * Servlet implementation class AddAllergy
- */
-@WebServlet("/AddAllergy")
-public class AddAllergy extends Master {
+@WebServlet("/AllAllergy")
+public class AllAllergy extends Master {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddAllergy() {
+    public AllAllergy() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,28 +28,34 @@ public class AddAllergy extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		body.append("<h1>Allergies</h1>");
 		
-		
-		
-		body.append( "<form id=addAllergy>");
-		body.append("<div class='form-group'>"+
-				 "<label for='allergies'>Please list allergys with commas between each:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies'></div>");
-
-		body.append("<div class='form-group'>"+
-	    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
+    	//start the table
+    	body.append("<table class='table'><caption><button type='button' class='btn btn-default btnAddAllergy'>Add Allergy</button></caption><thead><tr><th></th><th>Allergy:</th></tr></thead>");
+    	body.append("<tbody>");	
+    	
+    	////add the allergies
+    	UnicornPhoenixDB db = new UnicornPhoenixDB();
+    	ArrayList<Allergy> allergy = db.getAllergies();
+    	for(int i = 0;i<allergy.size();i++)
+    	{
+    		Allergy p = allergy.get(i);
+        	body.append("<tr><td><button type='button' class='btn btn-primary btn-xs btnEditPerson' data-id='" + p.getAllergyID() + "'>Edit</button><button type='button' class='btn btn-primary btn-xs btnDeletePerson' data-id='" + p.getAllergyID() + "'>Delete</button></td><td>" + p.getName() + "</td></tr>");
+    	}
+    	
+    	//close the table
+    	body.append("</tbody></table>");
+   
+	
+	
+	
+	
+	
+	
+	
+	
 		super.doGet(request, response);
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	}
 
 	/**

@@ -51,12 +51,12 @@ public class AddPerson extends Master {
 			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' value='" + p.getDOB().toString() + "' ></div>");
 			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='text' class='form-control' id='ssn' name='ssn' placeholder='SSN' value='" + p.getSSN().toString() + "' ></div>");
 			body.append("<div class='form-group'><label for='gender'>Gender</label><input type='text' class='form-control' id='gender' name='gender' placeholder='Gender' value='" + p.getGender() + "' ></div>");
-		body.append("<div class='form-inline'>"+
+			body.append("<div class='form-inline'>"+
 				    "<label for='personType'>select one: </label>"+
-				    "<select id='Select' class='form-control' name='personType' >"+
-				    "<option value='doctor'>Doctor</option>"+
-				    "<option value='paitent'>Paitent</option>"+
-				    "<option value='provider'>Provider</option>"+
+				    "<select id='Select' class='form-control' name='personType' value='"+p.getType()+"'>"+
+				    "<option name='doctor' value='doctor'>Doctor</option>"+
+				    "<option name='paitent' value='paitent'>Paitent</option>"+
+				    "<option name='provider' value='provider'>Provider</option>"+
 				    "</select></br>");
 			body.append("<button type='submit' class='btn btn-default'>Submit</button></form>");
 		}		

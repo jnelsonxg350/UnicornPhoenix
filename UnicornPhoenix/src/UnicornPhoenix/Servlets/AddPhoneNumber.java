@@ -26,6 +26,7 @@ public class AddPhoneNumber extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		body.append( "<form id=addPhoneNumber>");
 		body.append("<div class='form-inline'><label for='phone'>Phone Number</label><input type='tel' class='form-control' id='phoneNumber' size='10' placeholder='(xxx)xxx-xxxx'></div></br>");
 	body.append("<div class='form-group'>"+
 			    "<label for='phonetype'>Phone Type:  </label>"+

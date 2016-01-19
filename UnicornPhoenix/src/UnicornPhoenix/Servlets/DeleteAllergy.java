@@ -1,23 +1,26 @@
 package UnicornPhoenix.Servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import UnicornPhoenix.Database.UnicornPhoenixDB;
+
 /**
- * Servlet implementation class AddRecentSurgery
+ * Servlet implementation class DeleteAllergy
  */
-@WebServlet("/AddRecentSurgery")
-public class AddRecentSurgery extends Master {
+@WebServlet("/DeleteAllergy")
+public class DeleteAllergy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddRecentSurgery() {
+    public DeleteAllergy() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,28 +29,15 @@ public class AddRecentSurgery extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		body.append( "<form id=addSurgery>");
-		body.append("<div class='form-group'>"
-				+ "<label for='surgerys'>please list any recent surgerys with commas between each:</label><input type='text' class='form-control' id='surgery'placeholder='type None for no recent surgerys'name='surgerys'></div>");
-
-		body.append("<div class='form-group'>"+
-	    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
-		super.doGet(request, response);
-
-	
-	
-	
-	
-	
-	
-	
+		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		UnicornPhoenixDB db = new UnicornPhoenixDB();
+		db.deleteAllergy(request.getParameter("AllergyID"));
 	}
 
 }

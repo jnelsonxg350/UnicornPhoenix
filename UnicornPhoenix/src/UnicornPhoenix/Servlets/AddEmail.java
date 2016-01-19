@@ -26,6 +26,7 @@ public class AddEmail extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		body.append( "<form id=addEmail>");
 		body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email'></div>");
 		body.append("<div class='form-group'>"+
 			    "<label for='emailtype'>Email Type:  </label>"+
