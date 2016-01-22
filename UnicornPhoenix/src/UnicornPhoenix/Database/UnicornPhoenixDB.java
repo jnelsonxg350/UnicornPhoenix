@@ -1026,8 +1026,8 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("insert into Email (Email,Type) " +
-            "values(?,?);");
+            pst = con.prepareStatement("insert into Email (Email,Type,PersonID) " +
+            "values(?,?,?);");
             
             if(e.getEmail() != null)
             {
@@ -1046,7 +1046,16 @@ public class UnicornPhoenixDB
             {
             	pst.setNull(2, Types.NULL);
             }
-                        
+                    
+            if(e.getPersonID() != 0)
+            {
+            	pst.setInt(3, e.getPersonID());
+            }
+            else
+            {
+            	pst.setNull(3, Types.NULL);
+            }
+            
             pst.executeUpdate();
         } 
         catch (SQLException ex) 
@@ -1084,7 +1093,7 @@ public class UnicornPhoenixDB
         {       
             con = dataSource.getConnection();
             con = dataSource.getConnection();
-            pst = con.prepareStatement("update email set Email = ?,Type = ? " +
+            pst = con.prepareStatement("update email set Email = ?,Type = ?,PersonId = ? " +
             "where EmailID = ?;");
                         
             if(e.getEmail() != null)
@@ -1105,7 +1114,6 @@ public class UnicornPhoenixDB
             	pst.setNull(2, Types.NULL);
             }
             
-            
             if(e.getPersonID() != 0)
             {
             	pst.setInt(3, e.getPersonID());
@@ -1113,6 +1121,15 @@ public class UnicornPhoenixDB
             else
             {
             	pst.setNull(3, Types.NULL);
+            }
+            
+            if(e.getEmailID() != 0)
+            {
+            	pst.setInt(4, e.getEmailID());
+            }
+            else
+            {
+            	pst.setNull(4, Types.NULL);
             }
             
             pst.executeUpdate();

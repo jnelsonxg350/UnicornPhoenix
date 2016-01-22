@@ -15,7 +15,7 @@ $(document).ready(function(){
 		window.location = "/UnicornPhoenix/AddPerson";
 	});
 	//Capture submit of form to press the add button
-	$( "#personForm" ).submit(function(event) 
+	$("#personForm" ).submit(function(event) 
 	{
 		event.preventDefault();
 	  	$.post( "/UnicornPhoenix/AddPerson", $( "#personForm" ).serialize())
@@ -24,5 +24,13 @@ $(document).ready(function(){
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
-	
+	$("#emailForm" ).submit(function(event) 
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddEmail", $( "#emailForm" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});
 });

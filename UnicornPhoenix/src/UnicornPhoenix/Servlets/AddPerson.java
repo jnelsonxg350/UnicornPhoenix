@@ -30,8 +30,8 @@ public class AddPerson extends Master {
 			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name'></div>");
 			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' name='dob'></div>");
 			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='text' class='form-control' id='ssn' name='ssn' placeholder='SSN'></div>");
-			body.append("<div class='form-group'><label for='gender'>Gender</label><input type='text' class='form-control' id='gender' name='gender' placeholder='Gender'></div>");
-			body.append("<div class='form-group'><label for='gender'>Gender:  </label><input type='radio' id='female' value='female' name='female'>Female<input type='radio' id='male' value='male' name='male'>Male<input type='radio' id='othergender' value='othergender' name='othergender'>Other</div>");
+			//body.append("<div class='form-group'><label for='gender'>Gender</label><input type='text' class='form-control' id='gender' name='gender' placeholder='Gender'></div>");
+			body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'>Female<input type='radio' value='m' name='gender'>Male<input type='radio' value='o' name='gender'>Other</div>");
 			body.append("<div class='form-inline'>"+
 					"<label for='personType'>select one: </label>"+
 				    "<select id='Select' class='form-control' name='personType' >"+
@@ -45,12 +45,13 @@ public class AddPerson extends Master {
 		else //found a person display their info
 		{
 			body.append("<form id='personForm'>");
+			body.append("<input type='hidden' value='" + p.getPersonID() + "' name='id'/>");
 			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name' value='" + p.getFname() + "'></div>");
 			body.append("<div class='form-group'><label for='middlename'>Middle Name</label><input type='text' class='form-control' id='middleName' placeholder='Middle Name' value='"+p.getMname()+"' name='middlename' ></div>");
 			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' value='" + p.getLname() + "'></div>");
-			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' value='" + p.getDOB().toString() + "' ></div>");
+			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' value='" + p.getDOB().toString() + "' name='dob' ></div>");
 			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='text' class='form-control' id='ssn' name='ssn' placeholder='SSN' value='" + p.getSSN().toString() + "' ></div>");
-			body.append("<div class='form-group'><label for='gender'>Gender</label><input type='text' class='form-control' id='gender' name='gender' placeholder='Gender' value='" + p.getGender() + "' ></div>");
+			body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'>Female<input type='radio' value='m' name='gender'>Male<input type='radio' value='o' name='gender'>Other</div>");
 			body.append("<div class='form-inline'>"+
 				    "<label for='personType'>select one: </label>"+
 				    "<select id='Select' class='form-control' name='personType' value='"+p.getType()+"'>"+
@@ -99,7 +100,16 @@ public class AddPerson extends Master {
 
 		
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
-		db.addPerson(p);
+		if(request.getParameter("id") != null)
+		{
+			int id = Integer.parseInt(request.getParameter("id") );
+			p.setPersonID(id);
+			db.updatePerson(p);
+		}
+		else
+		{
+			db.addPerson(p);
+		}
 	}
 
 }

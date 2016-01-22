@@ -1,6 +1,11 @@
 package UnicornPhoenix.Database;
 
 public class Email {
+	@Override
+	public String toString() {
+		return "Email [Email=" + Email + ", Type=" + Type + ", EmailID="
+				+ EmailID + ", PersonID=" + PersonID + "]";
+	}
 	private String Email;
 	private String Type;
 	private int EmailID;
