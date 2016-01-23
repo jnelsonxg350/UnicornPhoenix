@@ -26,7 +26,6 @@ public class AddAddress extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		body.append( "<form id=addAddress>");
 		body.append("<div class='form-group'><label for='address1'>Address line 1</label><input type='text' class='form-control' id='address1' placeholder='Address' name='address1'></div>");
 		
 		body.append("<div class='form-group'><label for='city'>City </label><input type='text' class='form-control' id='city' placeholder='City' name='city'></div></br><div class='form-inline'>");
