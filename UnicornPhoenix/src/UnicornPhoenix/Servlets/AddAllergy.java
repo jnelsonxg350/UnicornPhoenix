@@ -1,6 +1,7 @@
 package UnicornPhoenix.Servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,35 +31,54 @@ public class AddAllergy extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UnicornPhoenixDB db = new UnicornPhoenixDB();
+		Allergy a = db.getAllergy(request.getParameter("allergyID"));
 		
-		
-		
+		//Couldn't find a allergy
+		if(a.getName() == null)
+		{
+
 		body.append( "<form id=addAllergy>");
 		body.append("<div class='form-group'>"+
-				 "<label for='allergies'>Please list allergys with commas between each:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies'></div>");
-
+				 "<label for='allergies'>Please type in an allery:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies'></div>");
+		
 		body.append("<div class='form-group'>"+
 	    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
-		super.doGet(request, response);
-
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		}
+		
+		else{
+			body.append( "<form id=addAllergy>");
+			body.append("<input type='hidden' value='" + a.getAllergyID() + "' name='allergyID'/>");
+			body.append("<input type='hidden' value='" + a.getPersonID() + "' name='id'/>");
+			body.append("<div class='form-group'>"+
+					 "<label for='allergies'>Please type in an allergy:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies' value="+a.getName()+"></div>");
+			
+			body.append("<div class='form-group'>"+
+		    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
+		
+		}
+		
+	super.doGet(request, response);
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Allergy a = new Allergy();
+		a.setName(request.getParameter("allergies"));
+		UnicornPhoenixDB db = new UnicornPhoenixDB();
+		if(request.getParameter("allergyID") != null)
+		{
+			int id = Integer.parseInt(request.getParameter("AllergyID") );
+			a.setAllergyID(id);
+			db.updateAllergy(a);
+		}
+		else
+		{
+			db.addAllergy(a);
+		}
+		
+		
 	}
 
 }

@@ -24,41 +24,52 @@ public class AddPerson extends Master {
 		//Couldn't find a person
 		if(p.getLname() == null)
 		{
-			body.append("<form id='personForm'>");
-			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name'></div>");
-			body.append("<div class='form-group'><label for='middlename'>Middle Name</label><input type='text' class='form-control' id='middleName' placeholder='Middle Name' name='middlename' ></div>");
-			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name'></div>");
-			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' name='dob'></div>");
-			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='text' class='form-control' id='ssn' name='ssn' placeholder='SSN'></div>");
-			//body.append("<div class='form-group'><label for='gender'>Gender</label><input type='text' class='form-control' id='gender' name='gender' placeholder='Gender'></div>");
-			body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'>Female<input type='radio' value='m' name='gender'>Male<input type='radio' value='o' name='gender'>Other</div>");
-			body.append("<div class='form-inline'>"+
-					"<label for='personType'>select one: </label>"+
-				    "<select id='Select' class='form-control' name='personType' >"+
-				    "<option value='doctor'>Doctor</option>"+
-				    "<option value='paitent'>Paitent</option>"+
-				    "<option value='provider'>Provider</option>"+
-				    "</select></br>");
+			body.append("<form id='personForm' data-toggle='validator'>");
+			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name' required></div>");
+			body.append("<div class='form-group'><label for='middlename'>Middle Name</label><input type='text' class='form-control' id='middleName' placeholder='Middle Name' name='middlename' required></div>");
+			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' required></div>");
+			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' name='dob' required></div>");
+			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='text' class='form-control' id='ssn' name='ssn' placeholder='SSN' required></div>");
+			body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender' required> Female <input type='radio' value='m' name='gender' required> Male <input type='radio' value='o' name='gender' required> Other </div>");
+			body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required> Doctor <input type='radio' value='patient' name='personType' required> Paitent <input type='radio' value='provider' name='personType' required> Provider </div>");
+			
+			
+			
+			
+			
 			
 			body.append("<button type='submit' class='btn btn-default'>Submit</button></form>");
 		}
 		else //found a person display their info
 		{
-			body.append("<form id='personForm'>");
+			body.append("<form id='personForm' data-toggle='validator'>");
 			body.append("<input type='hidden' value='" + p.getPersonID() + "' name='id'/>");
-			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name' value='" + p.getFname() + "'></div>");
-			body.append("<div class='form-group'><label for='middlename'>Middle Name</label><input type='text' class='form-control' id='middleName' placeholder='Middle Name' value='"+p.getMname()+"' name='middlename' ></div>");
-			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' value='" + p.getLname() + "'></div>");
-			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' value='" + p.getDOB().toString() + "' name='dob' ></div>");
-			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='text' class='form-control' id='ssn' name='ssn' placeholder='SSN' value='" + p.getSSN().toString() + "' ></div>");
-			body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'>Female<input type='radio' value='m' name='gender'>Male<input type='radio' value='o' name='gender'>Other</div>");
-			body.append("<div class='form-inline'>"+
-				    "<label for='personType'>select one: </label>"+
-				    "<select id='Select' class='form-control' name='personType' value='"+p.getType()+"'>"+
-				    "<option name='doctor' value='doctor'>Doctor</option>"+
-				    "<option name='paitent' value='paitent'>Paitent</option>"+
-				    "<option name='provider' value='provider'>Provider</option>"+
-				    "</select></br>");
+			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name' value='" + p.getFname() + "' required></div>");
+			body.append("<div class='form-group'><label for='middlename'>Middle Name</label><input type='text' class='form-control' id='middleName' placeholder='Middle Name' value='"+p.getMname()+"' name='middlename' required></div>");
+			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' value='" + p.getLname() + "' required></div>");
+			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' value='" + p.getDOB().toString() + "' name='dob' required></div>");
+			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='text' class='form-control' id='ssn' name='ssn' placeholder='SSN' value='" + p.getSSN().toString() + "' required></div>");
+			if(p.getGender().equals("f")){
+				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender' checked='checked' required>Female<input type='radio' value='m' name='gender' required>Male<input type='radio' value='o' name='gender' required>Other</div>");
+			}
+			if(p.getGender().equals("m")){
+				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender' required>Female<input type='radio' value='m' name='gender' checked='checked' required>Male<input type='radio' value='o' name='gender' required>Other</div>");
+			}
+			if(p.getGender().equals("o")){
+				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'required>Female<input type='radio' value='m' name='gender' required>Male<input type='radio' value='o' name='gender' checked='checked' required>Other</div>");
+			}
+			
+			
+			if(p.getType().equals("doctor")){
+				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' checked='checked' required>Doctor<input type='radio' value='patient' name='personType' required>Paitent<input type='radio' value='provider' name='personType' required>Provider</div>");
+			}
+			if(p.getType().equals("patient")){
+				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required>Doctor<input type='radio' value='patient' name='personType' checked='checked' required>Paitent<input type='radio' value='provider' name='personType' required>Provider</div>");
+			}
+			if(p.getType().equals("provider")){
+				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required>Doctor<input type='radio' value='patient' name='personType' required>Paitent<input type='radio' value='provider' name='personType' checked='checked' required>Provider</div>");
+			}
+			
 			body.append("<button type='submit' class='btn btn-default'>Submit</button></form>");
 		}		
 				
@@ -86,16 +97,6 @@ public class AddPerson extends Master {
 		p.setGender(request.getParameter("gender"));
 		p.setSSN(request.getParameter("ssn"));
 		
-//		p.setAddress1(request.getParameter("address1"));
-//		p.setAddress2(request.getParameter("address2"));
-//		p.setCity(request.getParameter("city"));
-//		p.setState(request.getParameter("state"));
-//		p.setZipcode(request.getParameter("zipcode"));
-//		p.setAddressType(request.getParameter("addressType"));
-//		p.setPhoneNumber(request.getParameter("phone"));
-//		p.setPhoneNumberType(request.getParameter("phoneType"));
-//		p.setEmail(request.getParameter("email"));
-//		p.setEmailType(request.getParameter("emailtype"));
 		p.setType(request.getParameter("personType"));
 
 		

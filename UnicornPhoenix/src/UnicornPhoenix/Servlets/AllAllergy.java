@@ -31,7 +31,7 @@ public class AllAllergy extends Master {
 		body.append("<h1>Allergies</h1>");
 		
     	//start the table
-    	body.append("<table class='table'><caption><button type='button' class='btn btn-default btnAddAllergy'>Add Allergy</button></caption><thead><tr><th></th><th>Allergy:</th></tr></thead>");
+		body.append("<table class='table'><caption><button type='button' class='btn btn-default btnAddAllery'>Add Allergy</button></caption><thead><tr><th></th><th>Allergy Name</th></tr></thead>");
     	body.append("<tbody>");	
     	
     	////add the allergies
@@ -39,8 +39,8 @@ public class AllAllergy extends Master {
     	ArrayList<Allergy> allergy = db.getAllergies();
     	for(int i = 0;i<allergy.size();i++)
     	{
-    		Allergy p = allergy.get(i);
-        	body.append("<tr><td><button type='button' class='btn btn-primary btn-xs btnEditPerson' data-id='" + p.getAllergyID() + "'>Edit</button><button type='button' class='btn btn-primary btn-xs btnDeletePerson' data-id='" + p.getAllergyID() + "'>Delete</button></td><td>" + p.getName() + "</td></tr>");
+    		Allergy a = allergy.get(i);
+        	body.append("<tr><td><button type='button' class='btn btn-primary btn-xs btnEditAllergy' data-id='" + a.getAllergyID() + "'>Edit</button><button type='button' class='btn btn-primary btn-xs btnDeleteAllergy' data-id='" + a.getAllergyID() + "'>Delete</button></td><td>" + a.getName() + "</td></tr>");
     	}
     	
     	//close the table
