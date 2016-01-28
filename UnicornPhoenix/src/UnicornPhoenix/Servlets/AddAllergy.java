@@ -40,7 +40,7 @@ public class AddAllergy extends Master {
 
 		body.append( "<form id=addAllergy>");
 		body.append("<div class='form-group'>"+
-				 "<label for='allergies'>Please type in an allery:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies'></div>");
+				 "<label for='allergies'>Please type in an allery:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies'></div> required");
 		
 		body.append("<div class='form-group'>"+
 	    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
