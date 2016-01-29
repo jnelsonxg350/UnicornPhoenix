@@ -70,7 +70,13 @@ public class AddPerson extends Master {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Person p = new Person();
-		p.setFname(request.getParameter("firstname"));
+		String firstName = request.getParameter("firstname");
+		if(firstName.isEmpty())
+		{
+			response.sendError(500);
+		}
+		p.setFname(firstName);
+		
 		p.setMname(request.getParameter("middlename"));
 		p.setLname(request.getParameter("lastname"));
 		
@@ -87,7 +93,12 @@ public class AddPerson extends Master {
 		}
 		
 		p.setGender(request.getParameter("gender"));
-		p.setSSN(request.getParameter("ssn"));
+		String ssn = request.getParameter("ssn");
+		if(!ssn.isEmpty())
+		{
+			ssn = ssn.replace("-", "");
+		}
+		p.setSSN(ssn);
 		
 		p.setType(request.getParameter("personType"));
 

@@ -983,6 +983,60 @@ public class UnicornPhoenixDB
         
         return a;
     }
+    public ArrayList<Allergy> getAllergysForPerson(int id)
+    {
+    	 ArrayList<Allergy> Allergies = new ArrayList<Allergy>();
+         
+         try
+         {       
+             con = dataSource.getConnection();
+             pst = con.prepareStatement("select * from allergy where personid = " + id + ";");
+             rs = pst.executeQuery();
+
+             while (rs.next()) 
+             {
+                 Allergy a = new Allergy();
+                 
+                 a.setAllergyID(rs.getInt("AllergyID"));
+                 a.setName(rs.getString("name"));
+                 a.setPersonID(rs.getInt("PersonID"));
+                 
+                 Allergies.add(a);
+                 
+             }
+
+         } 
+         catch (SQLException ex) 
+         {
+             System.out.println(ex.getMessage());
+         }
+         finally 
+         {
+
+             try
+             {
+                 if (rs != null) 
+                 {
+                     rs.close();
+                 }
+                 if (pst != null) 
+                 {
+                     pst.close();
+                 }
+                 if (con != null) 
+                 {
+                     con.close();
+                 }
+
+             } 
+             catch (SQLException ex) 
+             {
+                 
+             }
+         }
+         
+         return Allergies;
+    }
     public void deleteAllergy(String id)
     {        
         try

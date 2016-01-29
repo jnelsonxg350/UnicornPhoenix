@@ -38,7 +38,7 @@ public class AddEmail extends Master {
 		if(e.getEmail() == null)
 		{
 			body.append("<form id='emailForm'>");
-			body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email'></div>");
+			body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email' required></div>");
 			body.append("<div class='form-group'>"+
 				    "<label for='emailtype'>Email Type:  </label>"+			 
 				    "<input type='radio' value='personal'name='emailtype'>Personal"+			   
@@ -50,7 +50,7 @@ public class AddEmail extends Master {
 		{
 			body.append("<form id='emailForm'>");
 			body.append("<input type='hidden' value='" + e.getEmailID() + "' name='id'/>");
-			body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email' value='" + e.getEmail() + "'></div>");
+			body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email' value='" + e.getEmail() + "' required></div>");
 			body.append("<div class='form-group'>"+
 				    "<label for='emailtype'>Email Type:  </label>"+	getSelectedEmailType(e));
 			
@@ -63,7 +63,9 @@ public class AddEmail extends Master {
 	private String getSelectedEmailType(Email email)
 	{
 		String selectedEmail = ""; 
-				
+		
+		
+		
 		if(email.getType().equals("personal"))
 		{
 			selectedEmail = "<input type='radio' value='personal'name='emailtype' checked='checked'>Personal"+			   
@@ -91,7 +93,12 @@ public class AddEmail extends Master {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Email e = new Email();
-		e.setEmail(request.getParameter("email"));
+		String email = request.getParameter("email");
+		if(email.isEmpty())
+		{
+			response.sendError(500);
+		}
+		e.setEmail(email);
 		e.setType(request.getParameter("emailtype"));	
 		
 		// TODO Attach to a person

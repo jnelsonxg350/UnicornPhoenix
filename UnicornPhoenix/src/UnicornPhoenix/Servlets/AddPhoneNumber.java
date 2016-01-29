@@ -54,36 +54,36 @@ public class AddPhoneNumber extends Master {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PhoneNumber pn = new PhoneNumber();
-		Integer phoneNumberID=0;
-		try {
-			phoneNumberID=Integer.parseInt(request.getParameter("PhoneNumberNumberID"));
-		}
-	catch (Exception e) {}
-		pn.setPhoneNumberID(phoneNumberID);
-				pn.setPersonID(request.getParameter("PersonID"));
-				pn.setPhoneNumberID(request.getParameter("PhoneNumberID"));
-				
-				
-				pn.setType(request.getParameter("personType"));
-
-				
-				UnicornPhoenixDB db = new UnicornPhoenixDB();
-				if(request.getParameter("id") != null)
-				{
-					int id = Integer.parseInt(request.getParameter("id") );
-					pn.setPhoneNumberID(id);
-					db.updatePhoneNumber(pn);
-				}
-				else
-				{
-					db.addPhoneNumber(pn);
-				}
-			}
-
-			
-		
+//		// TODO Auto-generated method stub
+//		PhoneNumber pn = new PhoneNumber();
+//		Integer phoneNumberID=0;
+//		try {
+//			phoneNumberID=Integer.parseInt(request.getParameter("PhoneNumberNumberID"));
+//		}
+//	catch (Exception e) {}
+//		pn.setPhoneNumberID(phoneNumberID);
+//				//pn.setPersonID(request.getParameter("PersonID"));
+//				//pn.setPhoneNumberID(request.getParameter("PhoneNumberID"));
+//				
+//				
+//				pn.setType(request.getParameter("personType"));
+//
+//				
+//				UnicornPhoenixDB db = new UnicornPhoenixDB();
+//				if(request.getParameter("id") != null)
+//				{
+//					int id = Integer.parseInt(request.getParameter("id") );
+//					pn.setPhoneNumberID(id);
+//					db.updatePhoneNumber(pn);
+//				}
+//				else
+//				{
+//					db.addPhoneNumber(pn);
+//				}
+//			}
+//
+//			
+//		
 	}
 	
 }

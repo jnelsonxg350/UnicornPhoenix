@@ -70,6 +70,7 @@ public class Utilz {
 	    "<!-- Placed at the end of the document so the pages load faster --> " +
 	    "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script> " +
 	    "<script src='/UnicornPhoenix/js/bootstrap.min.js'></script> " +
+	    "<script src='/UnicornPhoenix/js/validator.js'></script> " +
 	    "<script src='/UnicornPhoenix/js/site.js'></script> " +
 	  "</body> " +
 	"</html> ");
