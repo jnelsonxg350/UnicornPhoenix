@@ -43,4 +43,14 @@ $(document).ready(function(){
 	  		window.location = "/UnicornPhoenix/AllAllergy";
 		});
 	});
+	$("#addMedHistory" ).submit(function(event) 
+	{
+		console.log('here');
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddMedHistory", $( "#addMedHistory" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});
 });

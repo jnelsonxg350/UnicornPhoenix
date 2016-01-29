@@ -1322,6 +1322,61 @@ public class UnicornPhoenixDB
         
         return e;
     }
+    public ArrayList<Email> getEmailsForPerson(int id)
+    {
+    	 ArrayList<Email> Emails = new ArrayList<Email>();
+         
+         try
+         {       
+             con = dataSource.getConnection();
+             pst = con.prepareStatement("select * from email where personid = " + id + ";");
+             rs = pst.executeQuery();
+
+             while (rs.next()) 
+             {
+            	 Email e = new Email();
+                 
+                 e.setEmailID(rs.getInt("EmailID"));
+                 e.setEmail(rs.getString("email"));
+                 e.setType(rs.getString("Type"));
+                 e.setPersonID(rs.getInt("PersonID"));
+                 
+                 Emails.add(e);
+                 
+             }
+
+         } 
+         catch (SQLException ex) 
+         {
+             System.out.println(ex.getMessage());
+         }
+         finally 
+         {
+
+             try
+             {
+                 if (rs != null) 
+                 {
+                     rs.close();
+                 }
+                 if (pst != null) 
+                 {
+                     pst.close();
+                 }
+                 if (con != null) 
+                 {
+                     con.close();
+                 }
+
+             } 
+             catch (SQLException ex) 
+             {
+                 
+             }
+         }
+         
+         return Emails;
+    }
     public void deleteEmail(String id)
     {        
         try
@@ -1365,8 +1420,8 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("insert into MedicalHistory (BloodType,CurrentWeight,CurrentHeight) " +
-            "values(?,?,?);");
+            pst = con.prepareStatement("insert into MedicalHistory (BloodType,CurrentWeight,CurrentHeight,PersonID) " +
+            "values(?,?,?,?);");
             
             if(m.getBloodType() != null)
             {
@@ -1394,7 +1449,15 @@ public class UnicornPhoenixDB
             {
             	pst.setNull(3, Types.NULL);
             }
-                                   
+            
+            if(m.getPersonID() != 0)
+            {
+            	pst.setInt(4, m.getPersonID());
+            }
+            else
+            {
+            	pst.setNull(4, Types.NULL);
+            }                      
             pst.executeUpdate();
         } 
         catch (SQLException ex) 

@@ -31,13 +31,14 @@ public class AddMedHistory extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		body.append( "<form id=addMedHistory>");
 		//body.append("<div class='form-group'><label for='allergies'>Any allergies?</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies'></div>");
 		//body.append("<div class='form-group'><label for='surgerys'>Any recent surgerys?</label><input type='text' class='form-control' id='surgery'placeholder='type None for no recent surgerys'></div>");
-		body.append("<div class='form-inline'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' placeholder='5 feet 6 inches'></div></br>");
-		body.append("<div class='form-inline'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' placeholder='140lbs'></div></br>");
+		body.append("<div class='form-inline'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' name='height' placeholder='5 feet 6 inches'></div></br>");
+		body.append("<div class='form-inline'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs'></div></br>");
 		body.append("<div class='form-inline'><label for='bloodtype'>Blood Type </label>"+
-			    "<select id='Select' class='form-control'>"+
+			    "<select id='Select' name='bloodtype' class='form-control'>"+
 			    "<option value='o+'>O+</option>"+
 			    "<option value='o-'>O-</option>"+
 			    "<option value='A+'>A+</option>"+
@@ -56,13 +57,27 @@ public class AddMedHistory extends Master {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// setting to database
 		MedicalHistory m = new MedicalHistory();
 		m.setBloodType(request.getParameter("bloodtype"));
-		//m.setCurrentWeight(request.getParameter("currentweight"));
-		//m.setCurrentHeight(request.getParameter("currentheight"));
-		m.setPersonID(5);
+		int cw = 0;
+		try {
+			cw = Integer.parseInt(request.getParameter("weight"));
+			}
+		catch (Exception e){}
 		
+		m.setCurrentWeight(cw);
+		
+		int ch = 0;
+		try {
+			ch = Integer.parseInt(request.getParameter("height"));
+			}
+		catch (Exception e){}
+		m.setCurrentHeight(ch);
+		
+		m.setPersonID(1);
+
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		if(request.getParameter("id") != null)
 		{
