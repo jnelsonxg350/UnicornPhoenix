@@ -32,5 +32,15 @@ $(document).ready(function(){
 		{
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
+	  	
+	});
+	$("#AllergyForm" ).submit(function(event) 
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddAllergy", $( "#AllergyForm" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllAllergy";
+		});
 	});
 });

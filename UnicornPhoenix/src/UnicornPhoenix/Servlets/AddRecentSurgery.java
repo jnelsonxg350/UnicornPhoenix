@@ -26,7 +26,6 @@ public class AddRecentSurgery extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		body.append( "<form id=addSurgery>");
 		body.append("<div class='form-group'>"
 				+ "<label for='surgerys'>please list any recent surgerys with commas between each:</label><input type='text' class='form-control' id='surgery'placeholder='type None for no recent surgerys'name='surgerys'></div>");
 

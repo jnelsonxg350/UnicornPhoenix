@@ -32,15 +32,13 @@ public class AddAllergy extends Master {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
-		Allergy a = db.getAllergy(request.getParameter("allergyID"));
-		
-		//Couldn't find a allergy
+		Allergy a = db.getAllergy(request.getParameter("AllergyID"));
 		if(a.getName() == null)
+			
 		{
-
-		body.append( "<form id=addAllergy>");
+			body.append("<form id='AllergyForm' data-toggle='validator'>");
 		body.append("<div class='form-group'>"+
-				 "<label for='allergies'>Please type in an allery:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies'></div> required");
+				 "<label for='allergies'>Please type in an allery:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies' required></div> ");
 		
 		body.append("<div class='form-group'>"+
 	    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
@@ -64,7 +62,9 @@ public class AddAllergy extends Master {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		Allergy a = new Allergy();
+		a.setPersonID(4);
 		a.setName(request.getParameter("allergies"));
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		if(request.getParameter("allergyID") != null)
