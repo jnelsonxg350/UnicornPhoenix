@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import UnicornPhoenix.Database.Allergy;
+import UnicornPhoenix.Database.Person;
+import UnicornPhoenix.Database.UnicornPhoenixDB;
+
 /**
  * Servlet implementation class AddAllergy
  */
@@ -28,7 +32,11 @@ public class AddAllergy extends Master {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
-		Allergy a = db.getAllergy(request.getParameter("allergyID"));
+		Allergy a = db.getAllergy(request.getParameter("AllergyID"));
+		if(a.getName() == null)
+			
+		{
+			body.append("<form id='personForm' data-toggle='validator'>");
 		body.append("<div class='form-group'>"+
 				 "<label for='allergies'>Please type in an allery:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies'></div> required");
 		
