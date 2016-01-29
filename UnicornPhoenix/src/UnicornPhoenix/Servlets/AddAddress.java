@@ -1,11 +1,19 @@
 package UnicornPhoenix.Servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import UnicornPhoenix.Database.Address;
+import UnicornPhoenix.Database.Person;
+import UnicornPhoenix.Database.UnicornPhoenixDB;
 
 /**
  * Servlet implementation class AddAddress
@@ -108,7 +116,33 @@ public class AddAddress extends Master {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Address a = new Address();
+		a.setCity(request.getParameter("city"));
+		a.setState(request.getParameter("state"));
+		a.setZip(request.getParameter("zip"));
 		
-	}
+		a.setAddress(request.getParameter("AddressID"));
+		a.setPersonID(request.getParameter("PersonID"));
+		
+		a.setType(request.getParameter("personType"));
 
+		
+		UnicornPhoenixDB db = new UnicornPhoenixDB();
+		if(request.getParameter("id") != null)
+		{
+			int id = Integer.parseInt(request.getParameter("id") );
+			a.setPersonID(id);
+			db.updatePerson(a);
+		}
+		else
+		{
+			db.addPerson(a);
+		}
+	}
+	
+	
+	
+	
+	
+	
 }

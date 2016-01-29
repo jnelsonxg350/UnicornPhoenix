@@ -1,11 +1,19 @@
 package UnicornPhoenix.Servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import UnicornPhoenix.Database.Person;
+import UnicornPhoenix.Database.PhoneNumber;
+import UnicornPhoenix.Database.UnicornPhoenixDB;
 
 /**
  * Servlet implementation class AddPhoneNumber
@@ -48,6 +56,36 @@ public class AddPhoneNumber extends Master {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
+		PhoneNumber pn = new PhoneNumber();
+		Integer phoneNumberID=0;
+		try {
+			phoneNumberID=Integer.parseInt(request.getParameter("PhoneNumberNumberID"));
+		}
+	catch (Exception e) {}
+		pn.setPhoneNumberID(phoneNumberID);
+				pn.setPersonID(request.getParameter("PersonID"));
+				pn.setPhoneNumberID(request.getParameter("PhoneNumberID"));
+				
+				
+				pn.setType(request.getParameter("personType"));
 
+				
+				UnicornPhoenixDB db = new UnicornPhoenixDB();
+				if(request.getParameter("id") != null)
+				{
+					int id = Integer.parseInt(request.getParameter("id") );
+					pn.setPhoneNumberID(id);
+					db.updatePhoneNumber(pn);
+				}
+				else
+				{
+					db.addPhoneNumber(pn);
+				}
+			}
+
+			
+		
+	}
+	
 }
+
