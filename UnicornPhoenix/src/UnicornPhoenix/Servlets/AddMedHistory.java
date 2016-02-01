@@ -33,11 +33,9 @@ public class AddMedHistory extends Master {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		body.append( "<form id=addMedHistory>");
-		//body.append("<div class='form-group'><label for='allergies'>Any allergies?</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies'></div>");
-		//body.append("<div class='form-group'><label for='surgerys'>Any recent surgerys?</label><input type='text' class='form-control' id='surgery'placeholder='type None for no recent surgerys'></div>");
-		body.append("<div class='form-inline'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' name='height' placeholder='5 feet 6 inches'></div></br>");
-		body.append("<div class='form-inline'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs'></div></br>");
-		body.append("<div class='form-inline'><label for='bloodtype'>Blood Type </label>"+
+		body.append("<div class='form-inline'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' name='height' placeholder='72 inches' required></div></br>");
+		body.append("<div class='form-inline'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs'required></div></br>");
+		body.append("<div class='form-inline'><label for='bloodtype' required>Blood Type </label>"+
 			    "<select id='Select' name='bloodtype' class='form-control'>"+
 			    "<option value='o+'>O+</option>"+
 			    "<option value='o-'>O-</option>"+
