@@ -53,4 +53,13 @@ $(document).ready(function(){
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
+	$("#VisitForm" ).submit(function(event) 
+			{
+				event.preventDefault();
+			  	$.post( "/UnicornPhoenix/AddVisit", $( "#VisitForm" ).serialize())
+			  	.done(function(data)
+				{
+			  		window.location = "/UnicornPhoenix/AllPeople";
+				});
+			});
 });
