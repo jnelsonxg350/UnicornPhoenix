@@ -4,6 +4,14 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/AddPerson?id=" + id;
 	});
+	$('.btnPersonDetails').click(function(){
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/PersonDetails?id=" + id;
+	});
+	$('.btnAddAllergy').click(function(){
+		window.location = "/UnicornPhoenix/AddAllergy";
+	});
+	
 	//delete the person
 	$('.btnDeletePerson').click(function(){
 		var id = $(this).data('id');
