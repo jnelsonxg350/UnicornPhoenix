@@ -58,7 +58,7 @@ public class PersonDetails extends Master {
 			body.append(allergies.get(i).getName() + "<br/>");
 		}
 		//button wont work
-		body.append("<button type='button' class='btn btn-default' btn-xs btnAddAllergy>Add Allergy</button>");
+		body.append("<button type='button' class='btn btn-default' btn-xs btnUpdateAllergy>Add Allergy</button>");
 		
 		super.doGet(request, response);
 	}

@@ -64,7 +64,6 @@ public class AddAllergy extends Master {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Allergy a = new Allergy();
-		a.setPersonID(5);
 		a.setName(request.getParameter("allergies"));
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		if(request.getParameter("allergyID") != null)

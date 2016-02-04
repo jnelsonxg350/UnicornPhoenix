@@ -8,7 +8,7 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/PersonDetails?id=" + id;
 	});
-	$('.btnAddAllergy').click(function(){
+	$('.btnUpdateAllergy').click(function(){
 		window.location = "/UnicornPhoenix/AddAllergy";
 	});
 	
