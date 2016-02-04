@@ -121,7 +121,7 @@ public class AddAddress extends Master {
 		a.setZip(request.getParameter("zip"));
 		
 		a.setAddress(request.getParameter("AddressID"));
-		//a.setPersonID(request.getParameter("PersonID"));
+		a.setPersonID(request.getParameter("PersonID"));
 		
 		a.setType(request.getParameter("personType"));
 
@@ -131,11 +131,11 @@ public class AddAddress extends Master {
 		{
 			int id = Integer.parseInt(request.getParameter("id") );
 			a.setPersonID(id);
-			//db.updatePerson(a);
+			db.updatePerson(a);
 		}
 		else
 		{
-			//db.addPerson(a);
+			db.addPerson(a);
 		}
 	}
 	
