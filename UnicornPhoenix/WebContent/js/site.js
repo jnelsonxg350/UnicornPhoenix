@@ -4,6 +4,14 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/AddPerson?id=" + id;
 	});
+	$('.btnPersonDetails').click(function(){
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/PersonDetails?id=" + id;
+	});
+	$('.btnUpdateAllergy').click(function(){
+		window.location = "/UnicornPhoenix/AddAllergy";
+	});
+	
 	//delete the person
 	$('.btnDeletePerson').click(function(){
 		var id = $(this).data('id');
@@ -14,54 +22,56 @@ $(document).ready(function(){
 	$('.btnAddPerson').click(function(){
 		window.location = "/UnicornPhoenix/AddPerson";
 	});
-	$('#personForm').validator().on('submit', function (e) {
-		  if (!e.isDefaultPrevented()) {
-			  event.preventDefault();
-			  $.post( "/UnicornPhoenix/AddPerson", $( "#personForm" ).serialize())
-			  	.done(function(data)
-				{
-			  		window.location = "/UnicornPhoenix/AllPeople";
-				});
-		  }
-	});
-	$('#emailForm').validator().on('submit', function (e) {
-		  if (!e.isDefaultPrevented()) {
-			  event.preventDefault();
-			  $.post( "/UnicornPhoenix/AddEmail", $( "#emailForm" ).serialize())
-			  	.done(function(data)
-				{
-			  		window.location = "/UnicornPhoenix/AllPeople";
-				});
-		  }
-	});
-	$('#AllergyForm').validator().on('submit', function (e) {
-		  if (!e.isDefaultPrevented()) {
-			  event.preventDefault();
-			  $.post( "/UnicornPhoenix/AddAllergy", $( "#AllergyForm" ).serialize())
-			  	.done(function(data)
-				{
-			  		window.location = "/UnicornPhoenix/AllAllergy";
-				});
-		  }
-	});
-	$('#addMedHistory').validator().on('submit', function (e) {
-		  if (!e.isDefaultPrevented()) {
-			  event.preventDefault();
-		  	$.post( "/UnicornPhoenix/AddMedHistory", $( "#addMedHistory" ).serialize())
-		  	.done(function(data)
-			{
-		  		window.location = "/UnicornPhoenix/AllPeople";
-			});
-		  }
-	});
-	$('#VisitForm').validator().on('submit', function (e) {
-	  if (!e.isDefaultPrevented()) {
-		  event.preventDefault();
-	    $.post( "/UnicornPhoenix/AddVisit", $( "#VisitForm" ).serialize())
+	//Capture submit of form to press the add button
+	$("#personForm" ).submit(function(event) 
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddPerson", $( "#personForm" ).serialize())
 	  	.done(function(data)
 		{
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
-	  }
+	});
+	$("#emailForm" ).submit(function(event) 
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddEmail", $( "#emailForm" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	  	
+	});
+	$("#AllergyForm" ).submit(function(event) 
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddAllergy", $( "#AllergyForm" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});
+	$("#addMedHistory" ).submit(function(event) 
+	{
+		console.log('here');
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddMedHistory", $( "#addMedHistory" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});
+	$("#VisitForm" ).submit(function(event) 
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddVisit", $( "#VisitForm" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});
+	$("#btnUpdateAllergy").click(function(){
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;
 	});
 });

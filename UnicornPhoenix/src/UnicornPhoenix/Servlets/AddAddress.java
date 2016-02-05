@@ -119,9 +119,10 @@ public class AddAddress extends Master {
 		a.setCity(request.getParameter("city"));
 		a.setState(request.getParameter("state"));
 		a.setZip(request.getParameter("zip"));
-		
-		a.setAddress(request.getParameter("AddressID"));
-		//a.setPersonID(request.getParameter("PersonID"));
+		int addressID =  Integer.parseInt(request.getParameter("AddressID") );
+		a.setAddressID (addressID);
+		int personID =  Integer.parseInt(request.getParameter("PersonID") );
+		a.setPersonID (personID);
 		
 		a.setType(request.getParameter("personType"));
 
@@ -130,12 +131,12 @@ public class AddAddress extends Master {
 		if(request.getParameter("id") != null)
 		{
 			int id = Integer.parseInt(request.getParameter("id") );
-			a.setPersonID(id);
-			//db.updatePerson(a);
+			a.setAddressID(id);
+			db.updateAddress(a);
 		}
 		else
 		{
-			//db.addPerson(a);
+			db.addAddress(a);
 		}
 	}
 	
