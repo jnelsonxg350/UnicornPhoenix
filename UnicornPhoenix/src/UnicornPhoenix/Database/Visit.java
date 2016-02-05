@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Visit {
 	private Date dateOfVisit;
 	private int Height;
-	private int BloodPressure;
+	private String BloodPressure;
 	private int Weight;
 	private String Result;
 	private String Type;
@@ -23,10 +23,10 @@ public class Visit {
 	public void setHeight(int height) {
 		Height = height;
 	}
-	public int getBloodPressure() {
+	public String getBloodPressure() {
 		return BloodPressure;
 	}
-	public void setBloodPressure(int bloodPressure) {
+	public void setBloodPressure(String bloodPressure) {
 		BloodPressure = bloodPressure;
 	}
 	public int getWeight() {

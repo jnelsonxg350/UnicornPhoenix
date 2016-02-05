@@ -1,19 +1,23 @@
 package UnicornPhoenix.Servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import UnicornPhoenix.Database.UnicornPhoenixDB;
 import UnicornPhoenix.Database.Visit;
 
 /**
  * Servlet implementation class Visit
  */
-@WebServlet("/Visit")
+@WebServlet("/AddVisit")
 public class AddVisit extends Master {
 	private static final long serialVersionUID = 1L;
 
@@ -32,25 +36,25 @@ public class AddVisit extends Master {
 			HttpServletResponse response) throws ServletException, IOException {
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		Visit v = db.getVisit(request.getParameter("VisitID"));
+		
 		if (v.getDateOfVisit() == null)
-
 		{
 			body.append("<form id='VisitForm' data-toggle='validator'>");
-			body.append("<div class='form-inline'><label for='dateofvisit'>Date of Visit:</label><input type='date' class='form-control' id='visitdate'name='visitdate' required></div></br>");
-			body.append("<div class='form-inline'><label for='height'>Height</label><input type='text' class='form-control' id='height' placeholder='(inches)ex.(72)' name='height' required></div></br>");
-			body.append("<div class='form-inline'><label for='weight'> Weight</label><input type='text' class='form-control' id='weight' placeholder='150' name='weight' required></div></br>");
-			body.append("<div class='form-inline'><label for='bloodpressure'> Blood Pressure</label><input type='text' class='form-control' id='bloodpressure' placeholder='110/70' name='bloodpressure' required></div></br>");
-			body.append("<div class='form-inline'>"
-					+ "<label for='visittype'>select one: </label>"
-					+ "<select id='Select' class='form-control' name='visitType' >"
-					+ "<option value='walkin'name='walkin'>Walk-in</option>"
-					+ "<option value='checkup'name='checkup'>Check-up</option>"
-					+ "<option value='Emergency'name='emergency'>Emergency</option>"
+			body.append("<div class='form-group'><label for='dateofvisit'>Date of Visit:</label><input type='date' class='form-control' id='visitdate'name='visitdate' required></div></br>");
+			body.append("<div class='form-group'><label for='height'>Height</label><input type='text' class='form-control' id='height' placeholder='(inches)ex.(72)' name='height' required></div></br>");
+			body.append("<div class='form-group'><label for='weight'> Weight</label><input type='text' class='form-control' id='weight' placeholder='150' name='weight' required></div></br>");
+			body.append("<div class='form-group'><label for='bloodpressure'> Blood Pressure</label><input type='text' class='form-control' id='bloodpressure' placeholder='110/70' name='bloodpressure' required></div></br>");
+			body.append("<div class='form-group'>"
+					+ "<label for='visittype'>Type of Visit: </label>"
+					+ "<select id='Select' class='form-control' name='visitType' required>"
+					+ "<option value='' name='visitType'>Select One</option>"
+					+ "<option value='walkin' name='visitType'>Walk-in</option>"
+					+ "<option value='checkup' name='visitType'>Check-up</option>"
+					+ "<option value='Emergency' name='visitType'>Emergency</option>"
 					+ "</select></div></br>");
-			body.append("<div class='form-group'><label for='result'> Result of the Visit</label><input type='text' class='form-control' id='result' placeholder='please describe the result of the visit'name='result' required></div></br>");
+			body.append("<div class='form-group'><label for='result'> Result of the Visit</label><input type='text' class='form-control' id='result' placeholder='please describe the result of the visit' name='result' required></div></br>");
 
-			body.append("</div>"
-					+ "<div class='form-group'>"
+			body.append("<div class='form-group'>"
 					+ "<button type='submit' class='btn btn-default'>Submit</button></div></form>");
 		} 
 		else 
@@ -62,10 +66,10 @@ public class AddVisit extends Master {
 			body.append("<div class='form-inline'><label for='dateofvisit'>Date of Visit:</label><input type='date' class='form-control' id='visitdate'name='visitdate' required></div></br>");
 			body.append("<div class='form-inline'><label for='height'>Height</label><input type='text' class='form-control' id='height' placeholder='(inches)ex.(72)' name='height' required></div></br>");
 			body.append("<div class='form-inline'><label for='weight'> Weight</label><input type='text' class='form-control' id='weight' placeholder='150' name='weight' required></div></br>");
-			body.append("<div class='form-inline'><label for='bloodpressure'> Blood Pressure</label><input type='text' class='form-control' id='bloodpressure' placeholder='110/70' name='bloodpressure' required></div></br>");
+			body.append("<div class='form-group'><label for='bloodpressure'> Blood Pressure</label><input type='text' class='form-control' id='bloodpressure' placeholder='110/70' name='bloodpressure' required></div></br>");
 			body.append("<div class='form-inline'>"
 					+ "<label for='visittype'>select one: </label>"
-					+ "<select id='Select' class='form-control' name='visitType' >"
+					+ "<select id='Select' class='form-control' name='visitType' required>"
 					+ "<option value='walkin'name='walkin'>Walk-in</option>"
 					+ "<option value='checkup'name='checkup'>Check-up</option>"
 					+ "<option value='Emergency'name='emergency'>Emergency</option>"
@@ -89,6 +93,18 @@ public class AddVisit extends Master {
 
 		// setting to database
 		Visit v = new Visit();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {		
+			
+			Date d = sdf.parse(request.getParameter("visitdate"));
+			java.sql.Date sqlDate = new java.sql.Date(d.getTime());
+			v.setDateOfVisit(sqlDate);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		int ch = 0;
 		try {
 			ch = Integer.parseInt(request.getParameter("height"));
@@ -103,14 +119,10 @@ public class AddVisit extends Master {
 		}
 		v.setWeight(cw);
 
-		int bp = 0;
-		try {
-			bp = Integer.parseInt(request.getParameter("bloodpressure"));
-		} catch (Exception e) {
-		}
-		v.setBloodPressure(bp);
+		//String bp = (request.getParameter("bloodpressure"));
+		v.setBloodPressure(request.getParameter("bloodpressure"));
 
-		v.setType(request.getParameter("visittype"));
+		v.setType(request.getParameter("visitType"));
 		v.setResult(request.getParameter("result"));
 		v.setPersonID(1);
 

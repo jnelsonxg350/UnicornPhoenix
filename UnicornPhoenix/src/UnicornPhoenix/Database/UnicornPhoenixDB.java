@@ -2452,8 +2452,8 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("insert into Visit (DateOfVisit,Height,BloodPressure,Weight,Result,Type) " +
-            "values(?,?,?,?,?,?);");
+            pst = con.prepareStatement("insert into Visit (DateOfVisit,Height,BloodPressure,Weight,Result,Type,PersonID) " +
+            "values(?,?,?,?,?,?,?);");
             
             if(v.getDateOfVisit() != null)
             {
@@ -2473,9 +2473,9 @@ public class UnicornPhoenixDB
             	pst.setNull(2, Types.NULL);
             }
             
-            if(v.getBloodPressure() != 0)
+            if(v.getBloodPressure() != null)
             {
-            	pst.setInt(3, v.getBloodPressure());
+            	pst.setString(3, v.getBloodPressure());
             }
             else
             {
@@ -2508,7 +2508,15 @@ public class UnicornPhoenixDB
             {
             	pst.setNull(6, Types.NULL);
             }
-                                                
+            
+            if(v.getPersonID() != 0)
+            {
+            	pst.setInt(7, v.getPersonID());
+            }
+            else
+            {
+            	pst.setNull(7, Types.NULL);
+            }                                  
             pst.executeUpdate();
         } 
         catch (SQLException ex) 
@@ -2567,9 +2575,9 @@ public class UnicornPhoenixDB
             	pst.setNull(2, Types.NULL);
             }
             
-            if(v.getBloodPressure() != 0)
+            if(v.getBloodPressure() != null)
             {
-            	pst.setInt(3, v.getBloodPressure());
+            	pst.setString(3, v.getBloodPressure());
             }
             else
             {
@@ -2660,7 +2668,7 @@ public class UnicornPhoenixDB
                 v.setVisitID(rs.getInt("VisitID"));
                 v.setDateOfVisit(rs.getDate("DateOfVisit"));
                 v.setHeight(rs.getInt("Height"));
-                v.setBloodPressure(rs.getInt("BloodPressure"));
+                v.setBloodPressure(rs.getString("BloodPressure"));
                 v.setWeight(rs.getInt("Weight"));
                 v.setResult(rs.getString("Result"));
                 v.setType(rs.getString("Type"));
@@ -2717,7 +2725,7 @@ public class UnicornPhoenixDB
             	v.setVisitID(rs.getInt("VisitID"));
                 v.setDateOfVisit(rs.getDate("DateOfVisit"));
                 v.setHeight(rs.getInt("Height"));
-                v.setBloodPressure(rs.getInt("BloodPressure"));
+                v.setBloodPressure(rs.getString("BloodPressure"));
                 v.setWeight(rs.getInt("Weight"));
                 v.setResult(rs.getString("Result"));
                 v.setType(rs.getString("Type"));
@@ -2774,7 +2782,7 @@ public class UnicornPhoenixDB
             	 v.setVisitID(rs.getInt("VisitID"));
                  v.setDateOfVisit(rs.getDate("DateOfVisit"));
                  v.setHeight(rs.getInt("Height"));
-                 v.setBloodPressure(rs.getInt("BloodPressure"));
+                 v.setBloodPressure(rs.getString("BloodPressure"));
                  v.setWeight(rs.getInt("Weight"));
                  v.setResult(rs.getString("Result"));
                  v.setType(rs.getString("Type"));
