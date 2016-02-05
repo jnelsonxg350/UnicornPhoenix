@@ -16,7 +16,6 @@ public class PersonDetails extends Master {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		Person p = db.getPerson(request.getParameter("id"));
 		if(p == null)
@@ -27,6 +26,7 @@ public class PersonDetails extends Master {
 		ArrayList<Allergy> allergies = db.getAllergysForPerson(p.getPersonID());	
 		
 		//Print details
+		body = new StringBuilder();
 		body.append("<h4>First Name: " + p.getFname()+"</br></br>");
 		body.append("Middle Name: "+p.getMname()+"</br></br>");
 		body.append("Last Name: "+p.getLname()+"</br></br>");
@@ -57,7 +57,7 @@ public class PersonDetails extends Master {
 			body.append(allergies.get(i).getName() + "<br/>");
 		}
 		//button wont work
-		body.append("<button type='button' class='btn btn-default' btn-xs btnUpdateAllergy>Add Allergy</button>");
+		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateAllergy' data-id='" + p.getPersonID() + "'>Add Allergy</button>");
 		
 		super.doGet(request, response);
 	}

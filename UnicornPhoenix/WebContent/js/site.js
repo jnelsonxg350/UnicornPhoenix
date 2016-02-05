@@ -48,7 +48,7 @@ $(document).ready(function(){
 	  	$.post( "/UnicornPhoenix/AddAllergy", $( "#AllergyForm" ).serialize())
 	  	.done(function(data)
 		{
-	  		window.location = "/UnicornPhoenix/AllAllergy";
+	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
 	$("#addMedHistory" ).submit(function(event) 
@@ -62,12 +62,16 @@ $(document).ready(function(){
 		});
 	});
 	$("#VisitForm" ).submit(function(event) 
-			{
-				event.preventDefault();
-			  	$.post( "/UnicornPhoenix/AddVisit", $( "#VisitForm" ).serialize())
-			  	.done(function(data)
-				{
-			  		window.location = "/UnicornPhoenix/AllPeople";
-				});
-			});
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddVisit", $( "#VisitForm" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});
+	$("#btnUpdateAllergy").click(function(){
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;
+	});
 });
