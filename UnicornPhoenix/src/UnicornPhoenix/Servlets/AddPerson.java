@@ -50,22 +50,22 @@ public class AddPerson extends Master {
 			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' value='" + p.getDOB().toString() + "' name='dob' required></div>");
 			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='number'data-minlength='9' data-maxlength='9' class='form-control' id='ssn' name='ssn' placeholder='SSN' value='" + p.getSSN().toString() + "' required></div>");
 //having issues getting these to show on edit i need help with this
-			if (p.getGender()=="F"){
+			if (p.getGender().toLowerCase().equals("f")){
 				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender' checked='checked'required>Female<input type='radio' value='m' name='gender'required>Male<input type='radio' value='o' name='gender'required>Other</div>");
 			}
-			else if (p.getGender()=="M"){
+			else if (p.getGender().toLowerCase().equals("m")){
 				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'required>Female<input type='radio' value='m' name='gender' checked='checked'required>Male<input type='radio' value='o' name='gender'required>Other</div>");
 			}
-			else if (p.getGender()=="O"){
+			else if (p.getGender().toLowerCase().equals("o")){
 				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'required>Female<input type='radio' value='m' name='gender'required>Male<input type='radio' value='o' name='gender' checked='checked'required>Other</div>");
 			}
-			if (p.getType()=="doctor"){
+			if (p.getType().toLowerCase().equals("doctor")){
 				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' checked='checked' required> Doctor <input type='radio' value='patient' name='personType' required> Patient <input type='radio' value='provider' name='personType'required> Provider </div>");
 			}
-		 if(p.getType()=="patient"){
+		 if(p.getType().toLowerCase().equals("patient")){
 				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required> Doctor <input type='radio' value='patient' name='personType' checked='checked' required> Patient <input type='radio' value='provider' name='personType'required> Provider </div>");
 			}
-		if (p.getGender()=="provider"){
+		if (p.getGender().toLowerCase().equals("provider")){
 				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required> Doctor <input type='radio' value='patient' name='personType' required> Patient <input type='radio' value='provider' name='personType' checked='checked'required> Provider </div>");
 			}
 			
