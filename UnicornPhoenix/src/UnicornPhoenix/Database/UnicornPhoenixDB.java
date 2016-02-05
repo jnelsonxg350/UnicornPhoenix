@@ -126,7 +126,7 @@ public class UnicornPhoenixDB
             }
         }        
     }
-    public void updatePerson(Person p)
+    public void updatePerson(+Person p)
     {
         try
         {       
