@@ -4,6 +4,14 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/AddPerson?id=" + id;
 	});
+	$('.btnPersonDetails').click(function(){
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/PersonDetails?id=" + id;
+	});
+	$('.btnUpdateAllergy').click(function(){
+		window.location = "/UnicornPhoenix/AddAllergy";
+	});
+	
 	//delete the person
 	$('.btnDeletePerson').click(function(){
 		var id = $(this).data('id');
@@ -53,4 +61,13 @@ $(document).ready(function(){
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
+	$("#VisitForm" ).submit(function(event) 
+			{
+				event.preventDefault();
+			  	$.post( "/UnicornPhoenix/AddVisit", $( "#VisitForm" ).serialize())
+			  	.done(function(data)
+				{
+			  		window.location = "/UnicornPhoenix/AllPeople";
+				});
+			});
 });
