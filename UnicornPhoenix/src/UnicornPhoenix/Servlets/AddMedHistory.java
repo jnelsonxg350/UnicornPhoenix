@@ -34,7 +34,7 @@ public class AddMedHistory extends Master {
 		
 		body.append( "<form id=addMedHistory>");
 		body.append("<div class='form-inline'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' name='height' placeholder='72 inches' required></div></br>");
-		body.append("<div class='form-inline'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs' required></div></br>");
+		body.append("<div class='form-inline'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs'required></div></br>");
 		body.append("<div class='form-inline'><label for='bloodtype' required>Blood Type </label>"+
 			    "<select id='Select' name='bloodtype' class='form-control'>"+
 			    "<option value='o+'>O+</option>"+
