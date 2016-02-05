@@ -126,7 +126,7 @@ public class UnicornPhoenixDB
             }
         }        
     }
-    public void updatePerson(+Person p)
+    public void updatePerson(Person p)
     {
         try
         {       
@@ -717,64 +717,6 @@ public class UnicornPhoenixDB
         }
         
         return a;
-    }
-    public ArrayList<Address> getAddressesForPerson(int id)
-    {
-    	 ArrayList<Address> Addresses = new ArrayList<Address>();
-         
-         try
-         {       
-             con = dataSource.getConnection();
-             pst = con.prepareStatement("select * from address where personid = " + id + ";");
-             rs = pst.executeQuery();
-
-             while (rs.next()) 
-             {
-            	 Address a = new Address();
-                 
-                 a.setAddressID(rs.getInt("AddressID"));
-                 a.setAddress(rs.getString("address"));
-                 a.setCity(rs.getString("city"));
-                 a.setState(rs.getString("state"));
-                 a.setZip(rs.getString("zip"));
-                 a.setType(rs.getString("type"));
-                 a.setPersonID(rs.getInt("PersonID"));
-                 
-                 Addresses.add(a);
-                 
-             }
-
-         } 
-         catch (SQLException ex) 
-         {
-             System.out.println(ex.getMessage());
-         }
-         finally 
-         {
-
-             try
-             {
-                 if (rs != null) 
-                 {
-                     rs.close();
-                 }
-                 if (pst != null) 
-                 {
-                     pst.close();
-                 }
-                 if (con != null) 
-                 {
-                     con.close();
-                 }
-
-             } 
-             catch (SQLException ex) 
-             {
-                 
-             }
-         }
-         
-         return Addresses;
     }
     public void deleteAddress(String id)
     {        
@@ -1380,61 +1322,6 @@ public class UnicornPhoenixDB
         
         return e;
     }
-    public ArrayList<Email> getEmailsForPerson(int id)
-    {
-    	 ArrayList<Email> Emails = new ArrayList<Email>();
-         
-         try
-         {       
-             con = dataSource.getConnection();
-             pst = con.prepareStatement("select * from email where personid = " + id + ";");
-             rs = pst.executeQuery();
-
-             while (rs.next()) 
-             {
-            	 Email e = new Email();
-                 
-                 e.setEmailID(rs.getInt("EmailID"));
-                 e.setEmail(rs.getString("email"));
-                 e.setType(rs.getString("Type"));
-                 e.setPersonID(rs.getInt("PersonID"));
-                 
-                 Emails.add(e);
-                 
-             }
-
-         } 
-         catch (SQLException ex) 
-         {
-             System.out.println(ex.getMessage());
-         }
-         finally 
-         {
-
-             try
-             {
-                 if (rs != null) 
-                 {
-                     rs.close();
-                 }
-                 if (pst != null) 
-                 {
-                     pst.close();
-                 }
-                 if (con != null) 
-                 {
-                     con.close();
-                 }
-
-             } 
-             catch (SQLException ex) 
-             {
-                 
-             }
-         }
-         
-         return Emails;
-    }
     public void deleteEmail(String id)
     {        
         try
@@ -1478,8 +1365,8 @@ public class UnicornPhoenixDB
         try
         {       
             con = dataSource.getConnection();
-            pst = con.prepareStatement("insert into MedicalHistory (BloodType,CurrentWeight,CurrentHeight,PersonID) " +
-            "values(?,?,?,?);");
+            pst = con.prepareStatement("insert into MedicalHistory (BloodType,CurrentWeight,CurrentHeight) " +
+            "values(?,?,?);");
             
             if(m.getBloodType() != null)
             {
@@ -1507,15 +1394,7 @@ public class UnicornPhoenixDB
             {
             	pst.setNull(3, Types.NULL);
             }
-            
-            if(m.getPersonID() != 0)
-            {
-            	pst.setInt(4, m.getPersonID());
-            }
-            else
-            {
-            	pst.setNull(4, Types.NULL);
-            }                      
+                                   
             pst.executeUpdate();
         } 
         catch (SQLException ex) 
@@ -1730,62 +1609,6 @@ public class UnicornPhoenixDB
         
         return m;
     }
-    public ArrayList<MedicalHistory> getMedicalHistorysForPerson(int id)
-    {
-    	 ArrayList<MedicalHistory> MedicalHistorys = new ArrayList<MedicalHistory>();
-         
-         try
-         {       
-             con = dataSource.getConnection();
-             pst = con.prepareStatement("select * from MedicalHistory where personid = " + id + ";");
-             rs = pst.executeQuery();
-
-             while (rs.next()) 
-             {
-            	 MedicalHistory m = new MedicalHistory();
-                 
-            	 m.setMedicalHistoryID(rs.getInt("MedicalHistoryID"));
-                 m.setBloodType(rs.getString("BloodType"));
-                 m.setCurrentWeight(rs.getInt("CurrentWeight"));
-                 m.setCurrentHeight(rs.getInt("CurrentHeight"));
-                 m.setPersonID(rs.getInt("PersonID"));
-                 
-                 MedicalHistorys.add(m);
-                 
-             }
-
-         } 
-         catch (SQLException ex) 
-         {
-             System.out.println(ex.getMessage());
-         }
-         finally 
-         {
-
-             try
-             {
-                 if (rs != null) 
-                 {
-                     rs.close();
-                 }
-                 if (pst != null) 
-                 {
-                     pst.close();
-                 }
-                 if (con != null) 
-                 {
-                     con.close();
-                 }
-
-             } 
-             catch (SQLException ex) 
-             {
-                 
-             }
-         }
-         
-         return MedicalHistorys;
-    }    
     public void deleteMedicalHistory(String id)
     {        
         try
@@ -2053,61 +1876,6 @@ public class UnicornPhoenixDB
         
         return p;
     }
-    public ArrayList<PhoneNumber> getPhoneNumbersForPerson(int id)
-    {
-    	 ArrayList<PhoneNumber> PhoneNumbers = new ArrayList<PhoneNumber>();
-         
-         try
-         {       
-             con = dataSource.getConnection();
-             pst = con.prepareStatement("select * from PhoneNumber where personid = " + id + ";");
-             rs = pst.executeQuery();
-
-             while (rs.next()) 
-             {
-            	 PhoneNumber p = new PhoneNumber();
-                 
-            	 p.setPhoneNumberID(rs.getInt("PhoneNumberID"));
-                 p.setPnumber(rs.getInt("Pnumber"));
-                 p.setType(rs.getString("Type"));
-                 p.setPersonID(rs.getInt("PersonID"));
-                 
-                 PhoneNumbers.add(p);
-                 
-             }
-
-         } 
-         catch (SQLException ex) 
-         {
-             System.out.println(ex.getMessage());
-         }
-         finally 
-         {
-
-             try
-             {
-                 if (rs != null) 
-                 {
-                     rs.close();
-                 }
-                 if (pst != null) 
-                 {
-                     pst.close();
-                 }
-                 if (con != null) 
-                 {
-                     con.close();
-                 }
-
-             } 
-             catch (SQLException ex) 
-             {
-                 
-             }
-         }
-         
-         return PhoneNumbers;
-    }    
     public void deletePhoneNumber(String id)
     {        
         try
@@ -2354,60 +2122,6 @@ public class UnicornPhoenixDB
         }
         
         return r;
-    }
-    public ArrayList<RecentSurgery> getRecentSurgerysForPerson(int id)
-    {
-    	 ArrayList<RecentSurgery> RecentSurgerys = new ArrayList<RecentSurgery>();
-         
-         try
-         {       
-             con = dataSource.getConnection();
-             pst = con.prepareStatement("select * from RecentSurgery where personid = " + id + ";");
-             rs = pst.executeQuery();
-
-             while (rs.next()) 
-             {
-            	 RecentSurgery r = new RecentSurgery();
-                 
-            	 r.setRSID(rs.getInt("RSID"));
-                 r.setName(rs.getString("Name"));
-                 r.setPersonID(rs.getInt("PersonID"));
-                 
-                 RecentSurgerys.add(r);
-                 
-             }
-
-         } 
-         catch (SQLException ex) 
-         {
-             System.out.println(ex.getMessage());
-         }
-         finally 
-         {
-
-             try
-             {
-                 if (rs != null) 
-                 {
-                     rs.close();
-                 }
-                 if (pst != null) 
-                 {
-                     pst.close();
-                 }
-                 if (con != null) 
-                 {
-                     con.close();
-                 }
-
-             } 
-             catch (SQLException ex) 
-             {
-                 
-             }
-         }
-         
-         return RecentSurgerys;
     }
     public void deleteRecentSurgery(String id)
     {        
@@ -2757,65 +2471,6 @@ public class UnicornPhoenixDB
         
         return v;
     }
-    public ArrayList<Visit> getVisitsForPerson(int id)
-    {
-    	 ArrayList<Visit> Visits = new ArrayList<Visit>();
-         
-         try
-         {       
-             con = dataSource.getConnection();
-             pst = con.prepareStatement("select * from visit where personid = " + id + ";");
-             rs = pst.executeQuery();
-
-             while (rs.next()) 
-             {
-            	 Visit v = new Visit();
-                 
-            	 v.setVisitID(rs.getInt("VisitID"));
-                 v.setDateOfVisit(rs.getDate("DateOfVisit"));
-                 v.setHeight(rs.getInt("Height"));
-                 v.setBloodPressure(rs.getInt("BloodPressure"));
-                 v.setWeight(rs.getInt("Weight"));
-                 v.setResult(rs.getString("Result"));
-                 v.setType(rs.getString("Type"));
-                 v.setPersonID(rs.getInt("PersonID"));
-                 
-                 Visits.add(v);
-                 
-             }
-
-         } 
-         catch (SQLException ex) 
-         {
-             System.out.println(ex.getMessage());
-         }
-         finally 
-         {
-
-             try
-             {
-                 if (rs != null) 
-                 {
-                     rs.close();
-                 }
-                 if (pst != null) 
-                 {
-                     pst.close();
-                 }
-                 if (con != null) 
-                 {
-                     con.close();
-                 }
-
-             } 
-             catch (SQLException ex) 
-             {
-                 
-             }
-         }
-         
-         return Visits;
-    }        
     public void deleteVisit(String id)
     {        
         try
@@ -3169,66 +2824,6 @@ public class UnicornPhoenixDB
         
         return b;
     }
-    public ArrayList<BillingInformation> getBillingsForPerson(int id)
-    {
-    	 ArrayList<BillingInformation> billings = new ArrayList<BillingInformation>();
-         
-         try
-         {       
-             con = dataSource.getConnection();
-             pst = con.prepareStatement("select * from BillingInformation where personid = " + id + ";");
-             rs = pst.executeQuery();
-
-             while (rs.next()) 
-             {
-            	 BillingInformation b = new BillingInformation();
-                 
-            	 b.setBillingID(rs.getInt("BillinbID"));
-                 b.setIsInsurance(rs.getBoolean("IsInsurance"));
-                 b.setCreditCardNumber(rs.getString("CreditCardNumber"));
-                 b.setExpirationDate(rs.getDate("ExpirationDate"));
-                 b.setCSV(rs.getString("CSV"));
-                 b.setProviderID(rs.getInt("ProviderId"));
-                 b.setPlanCode(rs.getString("PlanCode"));
-                 b.setGroupCode(rs.getString("GroupCode"));
-                 b.setPersonID(rs.getInt("PersonID"));
-                 
-                 billings.add(b);
-                 
-             }
-
-         } 
-         catch (SQLException ex) 
-         {
-             System.out.println(ex.getMessage());
-         }
-         finally 
-         {
-
-             try
-             {
-                 if (rs != null) 
-                 {
-                     rs.close();
-                 }
-                 if (pst != null) 
-                 {
-                     pst.close();
-                 }
-                 if (con != null) 
-                 {
-                     con.close();
-                 }
-
-             } 
-             catch (SQLException ex) 
-             {
-                 
-             }
-         }
-         
-         return billings;
-    }    
     public void deleteBilling(String id)
     {        
         try
