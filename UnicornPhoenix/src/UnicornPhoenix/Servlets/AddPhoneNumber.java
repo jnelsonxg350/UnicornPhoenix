@@ -62,8 +62,10 @@ public class AddPhoneNumber extends Master {
 		}
      catch (Exception e) {}
 		pn.setPhoneNumberID(phoneNumberID);
-				pn.setPersonID(request.getParameter("PersonID"));
-				pn.setPhoneNumberID(request.getParameter("PhoneNumberID"));
+		int personID =  Integer.parseInt(request.getParameter("PersonID") );		
+		pn.setPersonID(personID);
+		int phoneNumberID1 =  Integer.parseInt(request.getParameter("PhoneNumberID") );		
+		pn.setPhoneNumberID(phoneNumberID1);
 				
 				
 				pn.setType(request.getParameter("personType"));
