@@ -31,12 +31,19 @@ public class AddMedHistory extends Master {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		UnicornPhoenixDB db = new UnicornPhoenixDB();
+		MedicalHistory m = db.getMedicalHistory(request.getParameter("MedicalHistoryID"));
+		int id = Integer.parseInt(request.getParameter("id"));
+		if(m.getBloodType() == null)
+			
+		{
 		body.append( "<form id=addMedHistory>");
-		body.append("<div class='form-inline'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' name='height' placeholder='72 inches' required></div></br>");
-		body.append("<div class='form-inline'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs'required></div></br>");
-		body.append("<div class='form-inline'><label for='bloodtype' required>Blood Type </label>"+
+		body.append("<input type='hidden' value='" + id + "' name='id'/>");
+		body.append("<div class='form-group'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' name='height' placeholder='72 inches' required></div></br>");
+		body.append("<div class='form-group'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs'required></div></br>");
+		body.append("<div class='form-group'><label for='bloodtype' required>Blood Type </label>"+
 			    "<select id='Select' name='bloodtype' class='form-control'>"+
+			    "<option value='null'>select</option>"+
 			    "<option value='o+'>O+</option>"+
 			    "<option value='o-'>O-</option>"+
 			    "<option value='A+'>A+</option>"+
@@ -47,7 +54,20 @@ public class AddMedHistory extends Master {
 			    "<option value='AB-'>AB-</option>"+
 			    "</select></div>");
 		body.append("<div class='form-group'><button type='submit' class='btn btn-default'>Submit</button></div></form>");
+}
 		
+		else{
+			body.append( "<form id=addMedHistory>");
+			body.append("<input type='hidden' value='" + m.getMedicalHistoryID() + "' name='allergyID'/>");
+			body.append("<input type='hidden' value='" + m.getPersonID() + "' name='id'/>");
+			body.append("<div class='form-group'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' name='height' placeholder='72 inches' value="+m.getCurrentHeight()+"></div></br>");
+			body.append("<div class='form-group'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs' value="+m.getCurrentWeight()+"></div></br>");
+			body.append("<div class='form-group'><label for='bloodtype'>Blood Type </label>"+m.getBloodType()+"</select></div>");
+				    
+			body.append("<div class='form-group'>"+
+		    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
+		
+		}
 		super.doGet(request, response);
 	}
 
@@ -74,7 +94,7 @@ public class AddMedHistory extends Master {
 		catch (Exception e){}
 		m.setCurrentHeight(ch);
 		
-		m.setPersonID(1);
+		m.setPersonID(5);
 
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		if(request.getParameter("id") != null)

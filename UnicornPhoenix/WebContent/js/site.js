@@ -11,6 +11,9 @@ $(document).ready(function(){
 	$('.btnUpdateAllergy').click(function(){
 		window.location = "/UnicornPhoenix/AddAllergy";
 	});
+	$('.btnUpdateMedicalHistory').click(function(){
+		window.location = "/UnicornPhoenix/AddMedHistory";
+	});
 	
 	//delete the person
 	$('.btnDeletePerson').click(function(){
@@ -73,5 +76,13 @@ $(document).ready(function(){
 	$("#btnUpdateAllergy").click(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;
+	});
+	$("#btnUpdateMedicalHistory").click(function(){
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddMedHistory?id=" + id;
+	});
+	$("#btnUpdateEmail").click(function(){
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddEmail?id=" + id;
 	});
 });

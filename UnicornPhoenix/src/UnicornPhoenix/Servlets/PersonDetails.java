@@ -24,6 +24,8 @@ public class PersonDetails extends Master {
 		}
 		
 		ArrayList<Allergy> allergies = db.getAllergysForPerson(p.getPersonID());	
+		ArrayList<MedicalHistory> MedicalHistorys = db.getMedicalHistorysForPerson(p.getPersonID());
+		ArrayList<Email> Emails = db.getEmailsForPerson(p.getPersonID());
 		
 		//Print details
 		body = new StringBuilder();
@@ -50,7 +52,24 @@ public class PersonDetails extends Master {
 	if (p.getGender().toLowerCase().equals("provider")){
 			body.append("Person is a: Provider </br></br>");
 		}
-		
+	
+		//Email
+		for(int i = 0;i<Emails.size();i++)
+		{
+		body.append("Email: "+Emails.get(i).getEmail()+"</br>");
+		if (Emails.get(i).getType().toLowerCase().equals("personal")){
+			body.append("Email is: Personal");
+		}
+		if(Emails.get(i).getType().toLowerCase().equals("work")){
+			body.append("Email is: Work");
+		}
+		if(Emails.get(i).getType().toLowerCase().equals("other")){
+			body.append("Email is: Other");
+		}
+		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateEmail' data-id='" + Emails.get(i).getEmailID() + "'>Edit Email</button>");
+		body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteEmail' data-id='" + Emails.get(i).getEmailID() + "'>Delete</button></br></br>");
+		}
+	
 		body.append("<h3>Allergies<h3>");
 		for(int i = 0;i<allergies.size();i++)
 		{
@@ -58,6 +77,18 @@ public class PersonDetails extends Master {
 		}
 		//button wont work
 		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateAllergy' data-id='" + p.getPersonID() + "'>Add Allergy</button>");
+		
+		//Medical History info and delete button
+		body.append("<h3>Medical History<h3>");
+		for(int i = 0;i<MedicalHistorys.size();i++)
+		{
+			body.append(MedicalHistorys.get(i).getBloodType() + "  BloodType" + "   " + 
+					MedicalHistorys.get(i).getCurrentWeight() + "  Weight" + "   " +  
+					MedicalHistorys.get(i).getCurrentHeight() + "  Height" + "   ");
+			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteMedicalHistory' data-id='" + MedicalHistorys.get(i).getMedicalHistoryID() + "'>Delete</button></br>");
+		}
+		//Update button 
+		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateMedicalHistory' data-id='" + p.getPersonID() + "'>Add Medical History</button>");
 		
 		super.doGet(request, response);
 	}
