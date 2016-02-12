@@ -11,9 +11,7 @@ $(document).ready(function(){
 	$('.btnUpdateAllergy').click(function(){
 		window.location = "/UnicornPhoenix/AddAllergy";
 	});
-	$('.btnUpdateMedicalHistory').click(function(){
-		window.location = "/UnicornPhoenix/AddMedHistory";
-	});
+	
 	
 	//delete the person
 	$('.btnDeletePerson').click(function(){
@@ -54,16 +52,7 @@ $(document).ready(function(){
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
-	$("#addMedHistory" ).submit(function(event) 
-	{
-		console.log('here');
-		event.preventDefault();
-	  	$.post( "/UnicornPhoenix/AddMedHistory", $( "#addMedHistory" ).serialize())
-	  	.done(function(data)
-		{
-	  		window.location = "/UnicornPhoenix/AllPeople";
-		});
-	});
+	
 	$("#VisitForm" ).submit(function(event) 
 	{
 		event.preventDefault();
@@ -77,12 +66,48 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;
 	});
-	$("#btnUpdateMedicalHistory").click(function(){
-		var id = $(this).data('id');
-		window.location = "/UnicornPhoenix/AddMedHistory?id=" + id;
-	});
-	$("#btnUpdateEmail").click(function(){
+	
+	$(".btnUpdateEmail").click(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/AddEmail?id=" + id;
 	});
+	$('.btnDeleteEmail').click(function(){
+		var id = $(this).data('id');
+		$.post( "/UnicornPhoenix/DeleteEmail?id=" + id, function(data){
+			window.location = "/UnicornPhoenix/AllPeople";
+		});		
+	});
+	
+	//Person details medical history add, update, delete
+	$(".btnUpdateMedicalHistory").click(function(){
+		
+		var medHistoryID = $(this).data('medicalhistoryid');		
+		window.location = "/UnicornPhoenix/AddMedHistory?MedicalHistoryID=" + medHistoryID;
+		
+	});	
+	$("#addMedHistory" ).click(function(event) 
+	{
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddMedHistory?id=" + id;		
+	  	
+	});
+	$(".btnDeleteMedicalHistory").click(function(){
+			
+			var medHistoryID = $(this).data('medicalhistoryid');		
+			$.post("/UnicornPhoenix/DeleteMedicalHistory?MedicalHistoryID=" + medHistoryID)
+		  	.done(function(data)
+			{
+		  		window.location = "/UnicornPhoenix/AllPeople";
+			});
+	});	
+	$("#addMedHistoryForm" ).submit(function(event) 
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddMedHistory", $( "#addMedHistoryForm" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});
+	
 });

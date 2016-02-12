@@ -66,7 +66,7 @@ public class PersonDetails extends Master {
 		if(Emails.get(i).getType().toLowerCase().equals("other")){
 			body.append("Email is: Other ");
 		}
-		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateEmail' data-id='" + Emails.get(i).getEmailID() + "'>Edit Email</button>&nbsp");
+		body.append("<button type='button' class='btn btn-default btn-xs btnUpdateEmail' data-id='" + Emails.get(i).getEmailID() + "'>Edit Email</button>&nbsp");
 		body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteEmail' data-id='" + Emails.get(i).getEmailID() + "'>Delete</button></br></br>");
 		}
 	
@@ -78,19 +78,19 @@ public class PersonDetails extends Master {
 		//button wont work
 		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateAllergy' data-id='" + p.getPersonID() + "'>Add Allergy</button>");
 		
-		//Medical History info and delete button
+		//Medical History info update and delete button
 		body.append("<h3>Medical History<h3>");
 		for(int i = 0;i<MedicalHistorys.size();i++)
 		{
 			body.append(MedicalHistorys.get(i).getBloodType() + "  BloodType" + "   " + 
 					MedicalHistorys.get(i).getCurrentWeight() + "  Weight" + "   " +  
 					MedicalHistorys.get(i).getCurrentHeight() + "  Height" + "   ");
-			body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateMedicalHistory' data-id='" + MedicalHistorys.get(i).getMedicalHistoryID() + "'>Edit Medical History</button>&nbsp");
-			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteMedicalHistory' data-id='" + MedicalHistorys.get(i).getMedicalHistoryID() + "'>Delete</button></br></br>");
+			body.append("<button type='button' class='btn btn-default btn-xs btnUpdateMedicalHistory' data-medicalhistoryid='" + MedicalHistorys.get(i).getMedicalHistoryID() + "'>Edit Medical History</button>&nbsp");
+			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteMedicalHistory' data-medicalhistoryid='" + MedicalHistorys.get(i).getMedicalHistoryID() + "'>Delete</button></br></br>");
 		}
 		
-		//Update button 
-		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateMedicalHistory' data-id='" + p.getPersonID() + "'>Add Medical History</button>");
+		//add button 
+		body.append("<button type='button' class='btn btn-default btn-xs' id='addMedHistory' data-id='" + p.getPersonID() + "'>Add Medical History</button>");
 		
 		super.doGet(request, response);
 	}
