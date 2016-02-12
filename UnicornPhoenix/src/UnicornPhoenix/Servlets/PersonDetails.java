@@ -66,10 +66,13 @@ public class PersonDetails extends Master {
 		if(Emails.get(i).getType().toLowerCase().equals("other")){
 			body.append("Email is: Other ");
 		}
-		body.append("<button type='button' class='btn btn-default btn-xs btnUpdateEmail' data-id='" + Emails.get(i).getEmailID() + "'>Edit Email</button>&nbsp");
-		body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteEmail' data-id='" + Emails.get(i).getEmailID() + "'>Delete</button></br></br>");
+		body.append("<button type='button' class='btn btn-default btn-xs btnUpdateEmail' data-emailid='" + Emails.get(i).getEmailID() + "'>Edit Email</button>&nbsp");
+		body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteEmail' data-emailid='" + Emails.get(i).getEmailID() + "'>Delete</button></br></br>");
 		}
-	
+		
+		//add email button 
+		body.append("<button type='button' class='btn btn-default btn-xs' id='addEmail' data-id='" + p.getPersonID() + "'>Add Email</button>");
+			
 		body.append("<h3>Allergies<h3>");
 		for(int i = 0;i<allergies.size();i++)
 		{

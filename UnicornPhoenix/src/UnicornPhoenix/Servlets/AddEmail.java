@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import UnicornPhoenix.Database.Email;
-import UnicornPhoenix.Database.Person;
 import UnicornPhoenix.Database.UnicornPhoenixDB;
 
 
@@ -33,11 +32,13 @@ public class AddEmail extends Master {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
-		Email e = db.getEmail(request.getParameter("id"));
+		Email e = db.getEmail(request.getParameter("EmailID"));
 		
 		if(e.getEmail() == null)
 		{
+			int id = Integer.parseInt(request.getParameter("id"));
 			body.append("<form id='emailForm'>");
+			body.append("<input type='hidden' value='" + id + "' name='id'/>");
 			body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email' required></div>");
 			body.append("<div class='form-group'>"+
 				    "<label for='emailtype'>Email Type:  </label>"+			 
@@ -49,7 +50,8 @@ public class AddEmail extends Master {
 		else
 		{
 			body.append("<form id='emailForm'>");
-			body.append("<input type='hidden' value='" + e.getEmailID() + "' name='id'/>");
+			body.append("<input type='hidden' value='" + e.getEmailID() + "' name='EmailID'/>");
+			body.append("<input type='hidden' value='" + e.getPersonID() + "' name='id'/>");
 			body.append("<div class='form-group'><label for='email'>Email Address</label><input type='email' class='form-control' id='email' name='email' placeholder='Email' value='" + e.getEmail() + "' required></div>");
 			body.append("<div class='form-group'>"+
 				    "<label for='emailtype'>Email Type:  </label>"+	getSelectedEmailType(e));
@@ -106,9 +108,9 @@ public class AddEmail extends Master {
 		e.setPersonID(PersonID);
 		
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
-		if(request.getParameter("id") != null)
+		if(request.getParameter("EmailID") != null)
 		{
-			int id = Integer.parseInt(request.getParameter("id"));
+			int id = Integer.parseInt(request.getParameter("EmailID"));
 			e.setEmailID(id);
 			System.out.println(e.toString());
 			db.updateEmail(e);

@@ -15,7 +15,7 @@ public class DeleteEmail extends Master {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
-		db.deleteEmail(request.getParameter("id"));
+		db.deleteEmail(request.getParameter("EmailID"));
 	}
 
 }
