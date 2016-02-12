@@ -102,7 +102,8 @@ public class AddEmail extends Master {
 		e.setType(request.getParameter("emailtype"));	
 		
 		// TODO Attach to a person
-		e.setPersonID(5);
+		int PersonID = Integer.parseInt(request.getParameter("id"));
+		e.setPersonID(PersonID);
 		
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		if(request.getParameter("id") != null)
