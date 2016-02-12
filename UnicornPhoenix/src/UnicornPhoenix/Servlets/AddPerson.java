@@ -20,7 +20,7 @@ public class AddPerson extends Master {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		Person p = db.getPerson(request.getParameter("id"));
-		
+		body=new StringBuilder();
 		//Couldn't find a person
 		if(p.getLname() == null)
 		{
@@ -31,7 +31,7 @@ public class AddPerson extends Master {
 			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' required></div>");
 			body.append("<div class='form-group'><label for='dob'>Birth Date: </label><input type='date' class='form-control' id='dob' name='dob' required></div></br>");
 			body.append("<div class='form-group'><label for='ssn'>Soical Security Number: </label><input type='number'data-inputmask=''mask': '999-99-9999'' class='form-control' id='ssn' name='ssn' placeholder='SSN' required></div></br>");
-			body.append("<div class='form-group'><label for='gender'>Gender:</label><input class='female' type='radio' value='f' name='gender' required> Female <input class='male' type='radio'  value='m' name='gender' required> Male <input class='othergender' type='radio' value='o'  name='gender' required> Other </div>");
+			body.append("<div class='form-group'><label for='gender'>Gender:</label><input class='female' type='radio' value='f' name='gender' required> <span class='female'>Female</span> <input class='male' type='radio'  value='m' name='gender' required><span class='male'> Male</span> <input class='othergender' type='radio' value='o'  name='gender' required><span class='othergender'> Other </span></div>");
 			body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required> Doctor <input type='radio' value='patient' name='personType' required> Paitent <input type='radio' value='provider' name='personType' required> Provider </div>");
 			
 			
