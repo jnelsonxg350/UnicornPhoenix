@@ -74,4 +74,9 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;
 	});
+	
+	
+	
+	
+	
 });

@@ -25,12 +25,13 @@ public class AddPerson extends Master {
 		if(p.getLname() == null)
 		{
 			body.append("<form id='personForm' data-toggle='validator'>");
+			body.append("<div ><img class='center-block' src='http://images.cooltext.com/4590117.png'><h2>Please Enter The Following Inforamtion:</h2>");
 			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name' required></div>");
-			body.append("<div class='form-group'><label for='middlename'>Middle Name</label><input type='text' class='form-control' id='middleName' placeholder='Middle Name' name='middlename' ></div>");
+			body.append("<div class='form-group'><label  for='middlename'>Middle Name</label><input type='text' class='form-control' id='middleName' placeholder='Middle Name' name='middlename' ></div>");
 			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' required></div>");
-			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' name='dob' required></div>");
-			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='number' data-minlength='9' data-maxlength='9' class='form-control' id='ssn' name='ssn' placeholder='SSN' required></div>");
-			body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender' required> Female <input type='radio' value='m' name='gender' required> Male <input type='radio' value='o' name='gender' required> Other </div>");
+			body.append("<div class='form-group'><label for='dob'>Birth Date: </label><input type='date' class='form-control' id='dob' name='dob' required></div></br>");
+			body.append("<div class='form-group'><label for='ssn'>Soical Security Number: </label><input type='number'data-inputmask=''mask': '999-99-9999'' class='form-control' id='ssn' name='ssn' placeholder='SSN' required></div></br>");
+			body.append("<div class='form-group'><label for='gender'>Gender:</label><input class='female' type='radio' value='f' name='gender' required> Female <input class='male' type='radio'  value='m' name='gender' required> Male <input class='othergender' type='radio' value='o'  name='gender' required> Other </div>");
 			body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required> Doctor <input type='radio' value='patient' name='personType' required> Paitent <input type='radio' value='provider' name='personType' required> Provider </div>");
 			
 			
@@ -43,29 +44,30 @@ public class AddPerson extends Master {
 		else //found a person display their info
 		{
 			body.append("<form id='personForm' data-toggle='validator'>");
+			body.append("<div ><img class='center-block' src='http://images.cooltext.com/4590117.png'><h2>Please Update The Following Inforamtion:</h2>");
 			body.append("<input type='hidden' value='" + p.getPersonID() + "' name='id'/>");
 			body.append("<div class='form-group'><label for='firstname'>First Name</label><input type='text' class='form-control' id='firstname' name='firstname' placeholder='First Name' value='" + p.getFname() + "' required></div>");
 			body.append("<div class='form-group'><label for='middlename'>Middle Name</label><input type='text' class='form-control' id='middleName' placeholder='Middle Name' value='"+p.getMname()+"' name='middlename' ></div>");
 			body.append("<div class='form-group'><label for='lastname'>Last Name</label><input type='text' class='form-control' id='lastname' name='lastname' placeholder='Last Name' value='" + p.getLname() + "' required></div>");
-			body.append("<div class='form-inline'><label for='dob'>Birth Date:</label><input type='date' class='form-control' id='dob' value='" + p.getDOB().toString() + "' name='dob' required></div>");
-			body.append("<div class='form-group'><label for='ssn'>SSN</label><input type='number'data-minlength='9' data-maxlength='9' class='form-control' id='ssn' name='ssn' placeholder='SSN' value='" + p.getSSN().toString() + "' required></div>");
+			body.append("<div class='form-group'><label for='dob'>Birth Date: </label><input type='date' class='form-control' id='dob' value='" + p.getDOB().toString() + "' name='dob' required></div></br>");
+			body.append("<div class='form-group'><label for='ssn'>Socail Security Number: </label><input type='number'data-minlength='9' data-maxlength='9' class='form-control' id='ssn' name='ssn' placeholder='SSN' value='" + p.getSSN().toString() + "' required></div></br>");
 //having issues getting these to show on edit i need help with this
-			if (p.getGender()=="F"){
+			if (p.getGender().equalsIgnoreCase("f")){
 				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender' checked='checked'required>Female<input type='radio' value='m' name='gender'required>Male<input type='radio' value='o' name='gender'required>Other</div>");
 			}
-			else if (p.getGender()=="M"){
+			else if (p.getGender().equalsIgnoreCase("m")){
 				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'required>Female<input type='radio' value='m' name='gender' checked='checked'required>Male<input type='radio' value='o' name='gender'required>Other</div>");
 			}
-			else if (p.getGender()=="O"){
+			else if (p.getGender().equalsIgnoreCase("o")){
 				body.append("<div class='form-group'><label for='gender'>Gender:</label><input type='radio' value='f' name='gender'required>Female<input type='radio' value='m' name='gender'required>Male<input type='radio' value='o' name='gender' checked='checked'required>Other</div>");
 			}
-			if (p.getType()=="doctor"){
+			if (p.getType().equalsIgnoreCase("doctor")){
 				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' checked='checked' required> Doctor <input type='radio' value='patient' name='personType' required> Patient <input type='radio' value='provider' name='personType'required> Provider </div>");
 			}
-		 if(p.getType()=="patient"){
+			else if(p.getType().equalsIgnoreCase("patient")){
 				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required> Doctor <input type='radio' value='patient' name='personType' checked='checked' required> Patient <input type='radio' value='provider' name='personType'required> Provider </div>");
 			}
-		if (p.getGender()=="provider"){
+			else if (p.getType().equalsIgnoreCase("provider")){
 				body.append("<div class='form-group'><label for='personType'>Select one:</label><input type='radio' value='doctor' name='personType' required> Doctor <input type='radio' value='patient' name='personType' required> Patient <input type='radio' value='provider' name='personType' checked='checked'required> Provider </div>");
 			}
 			
