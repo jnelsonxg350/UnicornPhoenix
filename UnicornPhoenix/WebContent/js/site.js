@@ -60,6 +60,7 @@ $(document).ready(function(){
 			  	
 	});
 		
+	//Person details visit add, update, delete
 	$("#VisitForm" ).submit(function(event) 
 	{
 		event.preventDefault();
@@ -69,6 +70,27 @@ $(document).ready(function(){
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
+	$(".btnUpdateVisit").click(function(){
+		
+		var visitID = $(this).data('visitid');		
+		window.location = "/UnicornPhoenix/AddVisit?VisitID=" + visitID;
+		
+	});	
+	$("#addVisit" ).click(function(event) 
+	{
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddVisit?id=" + id;		
+	  	
+	});
+	$(".btnDeleteVisit").click(function(){
+			
+		var visitID = $(this).data('visitid');		
+		$.post("/UnicornPhoenix/DeleteVisit?VisitID=" + visitID)
+	  	.done(function(data)
+	  	{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});	
 	
 	$("#AllergyForm" ).submit(function(event) 
 	{

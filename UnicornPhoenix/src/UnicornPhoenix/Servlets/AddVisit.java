@@ -39,7 +39,9 @@ public class AddVisit extends Master {
 		
 		if (v.getDateOfVisit() == null)
 		{
+			int id = Integer.parseInt(request.getParameter("id"));
 			body.append("<form id='VisitForm' data-toggle='validator'>");
+			body.append("<input type='hidden' value='" + id + "' name='id'/>");
 			body.append("<div class='form-group'><label for='dateofvisit'>Date of Visit:</label><input type='date' class='form-control' id='visitdate'name='visitdate' required></div></br>");
 			body.append("<div class='form-group'><label for='height'>Height</label><input type='text' class='form-control' id='height' placeholder='(inches)ex.(72)' name='height' required></div></br>");
 			body.append("<div class='form-group'><label for='weight'> Weight</label><input type='text' class='form-control' id='weight' placeholder='150' name='weight' required></div></br>");
@@ -59,20 +61,21 @@ public class AddVisit extends Master {
 		} 
 		else 
 		{
+			body.append("<form id='visitForm'>");
 			body.append("<input type='hidden' value='" + v.getVisitID()
 					+ "' name='VisitID'/>");
 			body.append("<input type='hidden' value='" + v.getPersonID()
 					+ "' name='id'/>");
-			body.append("<div class='form-inline'><label for='dateofvisit'>Date of Visit:</label><input type='date' class='form-control' id='visitdate'name='visitdate' required></div></br>");
-			body.append("<div class='form-inline'><label for='height'>Height</label><input type='text' class='form-control' id='height' placeholder='(inches)ex.(72)' name='height' required></div></br>");
-			body.append("<div class='form-inline'><label for='weight'> Weight</label><input type='text' class='form-control' id='weight' placeholder='150' name='weight' required></div></br>");
+			body.append("<div class='form-group'><label for='dateofvisit'>Date of Visit:</label><input type='date' class='form-control' id='visitdate'name='visitdate' required></div></br>");
+			body.append("<div class='form-group'><label for='height'>Height</label><input type='text' class='form-control' id='height' placeholder='(inches)ex.(72)' name='height' required></div></br>");
+			body.append("<div class='form-group'><label for='weight'> Weight</label><input type='text' class='form-control' id='weight' placeholder='150' name='weight' required></div></br>");
 			body.append("<div class='form-group'><label for='bloodpressure'> Blood Pressure</label><input type='text' class='form-control' id='bloodpressure' placeholder='110/70' name='bloodpressure' required></div></br>");
-			body.append("<div class='form-inline'>"
+			body.append("<div class='form-group'>"
 					+ "<label for='visittype'>select one: </label>"
 					+ "<select id='Select' class='form-control' name='visitType' required>"
-					+ "<option value='walkin'name='walkin'>Walk-in</option>"
-					+ "<option value='checkup'name='checkup'>Check-up</option>"
-					+ "<option value='Emergency'name='emergency'>Emergency</option>"
+					+ "<option value='walkin'name='visitType'>Walk-in</option>"
+					+ "<option value='checkup'name='visitType'>Check-up</option>"
+					+ "<option value='Emergency'name='visitType'>Emergency</option>"
 					+ "</select></div></br>");
 			body.append("<div class='form-group'><label for='result'> Result of the Visit</label><input type='text' class='form-control' id='result' placeholder='please describe the result of the visit'name='result' required></div></br>");
 
@@ -124,11 +127,14 @@ public class AddVisit extends Master {
 
 		v.setType(request.getParameter("visitType"));
 		v.setResult(request.getParameter("result"));
-		v.setPersonID(1);
+		
+		// TODO Attach to a person
+		int PersonID = Integer.parseInt(request.getParameter("id"));
+		v.setPersonID(PersonID);
 
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
-		if (request.getParameter("id") != null) {
-			int id = Integer.parseInt(request.getParameter("id"));
+		if (request.getParameter("VisitID") != null) {
+			int id = Integer.parseInt(request.getParameter("VisitID"));
 			v.setVisitID(id);
 			System.out.println(v.toString());
 			db.updateVisit(v);

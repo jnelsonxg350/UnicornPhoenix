@@ -26,6 +26,7 @@ public class PersonDetails extends Master {
 		ArrayList<Allergy> allergies = db.getAllergysForPerson(p.getPersonID());	
 		ArrayList<MedicalHistory> MedicalHistorys = db.getMedicalHistorysForPerson(p.getPersonID());
 		ArrayList<Email> Emails = db.getEmailsForPerson(p.getPersonID());
+		ArrayList<Visit> Visits = db.getVisitsForPerson(p.getPersonID());
 		
 		//Print details
 		body = new StringBuilder();
@@ -92,8 +93,34 @@ public class PersonDetails extends Master {
 			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteMedicalHistory' data-medicalhistoryid='" + MedicalHistorys.get(i).getMedicalHistoryID() + "'>Delete</button></br></br>");
 		}
 		
-		//add button 
+		//add medical history button 
 		body.append("<button type='button' class='btn btn-default btn-xs' id='addMedHistory' data-id='" + p.getPersonID() + "'>Add Medical History</button>");
+		
+		//Visit
+		body.append("<h3>Visit<h3>");
+		for(int i = 0;i<Visits.size();i++)
+		{
+			body.append("Date of Visit:"+Visits.get(i).getDateOfVisit()+"</br></br>");
+			body.append(Visits.get(i).getBloodPressure() + "  BloodPressure" + "   " + 
+					Visits.get(i).getWeight() + "  Weight" + "   " +  
+					Visits.get(i).getHeight() + "  Height" + "   ");
+			body.append("Visit: "+Visits.get(i).getType()+"</br>");
+			if (Visits.get(i).getType().toLowerCase().equals("Walk-In")){
+				//body.append("Email is: Personal ");
+			}
+			if(Visits.get(i).getType().toLowerCase().equals("Check-Up")){
+				//body.append("Email is: Work ");
+			}
+			if(Visits.get(i).getType().toLowerCase().equals("Emergency")){
+				//body.append("Email is: Other ");
+			}
+			body.append("Result: "+Visits.get(i).getResult()+"</br>");
+			body.append("<button type='button' class='btn btn-default btn-xs btnUpdateVisit' data-visitid='" + Visits.get(i).getVisitID() + "'>Edit Visit</button>&nbsp");
+			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteVisit' data-visitid='" + Visits.get(i).getVisitID() + "'>Delete</button></br></br>");
+		}
+		
+		//add visit button 
+		body.append("<button type='button' class='btn btn-default btn-xs' id='addVisit' data-id='" + p.getPersonID() + "'>Add Visit</button>");
 		
 		super.doGet(request, response);
 	}
