@@ -78,9 +78,12 @@ public class PersonDetails extends Master {
 		for(int i = 0;i<allergies.size();i++)
 		{
 			body.append(allergies.get(i).getName() + "<br/>");
+			body.append("<button type='button' class='btn btn-default btn-xs btnUpdateAllergy' data-allergyid='" + allergies.get(i).getAllergyID() + "'>Edit Allergy</button>&nbsp");
+			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteAllergy' data-allergyid='" + allergies.get(i).getAllergyID() + "'>Delete</button></br></br>");
+		
 		}
 		//button wont work
-		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateAllergy' data-id='" + p.getPersonID() + "'>Add Allergy</button>");
+		body.append("<button type='button' class='btn btn-default btn-xs' id='addAllergy' data-id='" + p.getPersonID() + "'>Add Allergy</button>");
 		
 		//Medical History info update and delete button
 		body.append("<h3>Medical History<h3>");
@@ -103,16 +106,13 @@ public class PersonDetails extends Master {
 			body.append("Date of Visit:"+Visits.get(i).getDateOfVisit()+"</br></br>");
 			body.append(Visits.get(i).getBloodPressure() + "  BloodPressure" + "   " + 
 					Visits.get(i).getWeight() + "  Weight" + "   " +  
-					Visits.get(i).getHeight() + "  Height" + "   ");
+					Visits.get(i).getHeight() + "  Height" + "   "+"</br>");
 			body.append("Visit: "+Visits.get(i).getType()+"</br>");
 			if (Visits.get(i).getType().toLowerCase().equals("Walk-In")){
-				//body.append("Email is: Personal ");
 			}
 			if(Visits.get(i).getType().toLowerCase().equals("Check-Up")){
-				//body.append("Email is: Work ");
 			}
 			if(Visits.get(i).getType().toLowerCase().equals("Emergency")){
-				//body.append("Email is: Other ");
 			}
 			body.append("Result: "+Visits.get(i).getResult()+"</br>");
 			body.append("<button type='button' class='btn btn-default btn-xs btnUpdateVisit' data-visitid='" + Visits.get(i).getVisitID() + "'>Edit Visit</button>&nbsp");

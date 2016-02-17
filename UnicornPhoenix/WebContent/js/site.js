@@ -8,11 +8,7 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/PersonDetails?id=" + id;
 	});
-	$('.btnUpdateAllergy').click(function(){
-		window.location = "/UnicornPhoenix/AddAllergy";
-	});
-	
-	
+		
 	//delete the person
 	$('.btnDeletePerson').click(function(){
 		var id = $(this).data('id');
@@ -92,6 +88,7 @@ $(document).ready(function(){
 		});
 	});	
 	
+	//Person details allergy add, update, delete
 	$("#AllergyForm" ).submit(function(event) 
 	{
 		event.preventDefault();
@@ -101,10 +98,25 @@ $(document).ready(function(){
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
-	$("#btnUpdateAllergy").click(function(){
-		var id = $(this).data('id');
-		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;
+	$(".btnUpdateAllergy").click(function(){
+		var allergyID = $(this).data('allergyid');
+		window.location = "/UnicornPhoenix/AddAllergy?AllergyID=" + allergyID;
 	});
+	$("#addAllergy" ).click(function(event) 
+	{
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;		
+			  	
+	});
+	$(".btnDeleteAllergy").click(function(){
+					
+		var allergyID = $(this).data('allergyid');		
+		$.post("/UnicornPhoenix/DeleteAllergy?AllergyID=" + allergyID)
+	  	.done(function(data)
+	  	{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});	
 	
 	//Person details medical history add, update, delete
 	$(".btnUpdateMedicalHistory").click(function(){
