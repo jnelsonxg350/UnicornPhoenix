@@ -28,7 +28,7 @@ public class AllPeople extends Master {
     	for(int i = 0;i<people.size();i++)
     	{
     		Person p = people.get(i);
-        	body.append("<tr><td><button type='button' class='btn btn-primary btn-xs btnEditPerson' data-id='" + p.getPersonID() + "'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> </button><button type='button' class='btn btn-primary btn-xs btnDeletePerson' data-id='" + p.getPersonID() + "'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button>&nbsp<button type='button' class='btn btn-primary btn-xs btnPersonDetails' data-id='" + p.getPersonID() + "'> Details </button></td><td class='textcolor'>" + p.getFname() + "</td><td class='textcolor'>" + p.getLname() + "</td></tr>");
+        	body.append("<tr><td><button type='button' class='btn btn-primary btn-xs btnEditPerson' data-id='" + p.getPersonID() + "'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> </button><button type='button' class='btn btn-primary btn-xs btnDeletePerson' data-id='" + p.getPersonID() + "'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button>&nbsp<button type='button' class='btn btn-primary btn-xs btnPersonDetails' data-id='" + p.getPersonID() + "'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> </button></td><td class='textcolor'>" + p.getFname() + "</td><td class='textcolor'>" + p.getLname() + "</td></tr>");
     	}
     	
     	//close the table

@@ -18,7 +18,7 @@ public class Default extends Master {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//add content
     	
-    	body.append("<div><img class='center-block' src='http://images.cooltext.com/4590117.png'></br>");
+    	body.append("<div><img class='center-block' src='http://images.cooltext.com/4590117.png'></br><h2 style='text-align:center;' class='textcolor'> Created By: Gregg Blacker, Tessa Huber And Dennis T");
     	body.append("<div><img class='center-block'src='http://skullappreciationsociety.com/wp-content/uploads/2015/08/Zombie_Unicorn_zombicorn_by_lordnetsua-d76rbxj.jpg'>");
 		
     	//call the super method

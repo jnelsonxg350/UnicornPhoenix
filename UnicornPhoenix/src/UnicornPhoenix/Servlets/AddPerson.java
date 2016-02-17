@@ -39,7 +39,7 @@ public class AddPerson extends Master {
 			
 			
 			
-			body.append("<button type='submit' class='btn btn-default'>Submit</button></form>");
+			body.append("<button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-floppy-disk' aria-hidden='true'></span> &nbsp Submit</button></form>");
 		}
 		else //found a person display their info
 		{
@@ -71,7 +71,7 @@ public class AddPerson extends Master {
 				body.append("<div class='form-group'><label for='personType' class='changetext'>Select one:</label><input type='radio' value='doctor' name='personType' required><span class='personselect'> Doctor <input type='radio' value='patient' name='personType' required> Patient <input type='radio' value='provider' name='personType' checked='checked'required> Provider </span></div>");
 			}
 			
-			body.append("<button type='submit' class='btn btn-default'>Submit</button></form>");
+			body.append("<button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-floppy-disk' aria-hidden='true'></span> &nbsp Submit</button></form>");
 		}		
 				
 		super.doGet(request, response);
