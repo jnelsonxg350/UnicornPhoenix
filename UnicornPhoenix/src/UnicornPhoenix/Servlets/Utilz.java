@@ -15,7 +15,7 @@ public class Utilz {
 	    "<meta name='author' content=''> " +
 	    "<link rel='icon' href='../../favicon.ico'> " +
 	
-	    "<title>Theme Template for Bootstrap</title> " +
+	    "<title>Unicorn Phoenix</title> " +
 	
 	    "<!-- Bootstrap core CSS --> " +
 	    "<link href='/UnicornPhoenix/css/bootstrap.min.css' rel='stylesheet'> " +
@@ -40,11 +40,11 @@ public class Utilz {
 	            "<span class='icon-bar'></span> " +
 	            "<span class='icon-bar'></span> " +
 	          "</button> " +
-	          "<a class='navbar-brand' href='#'>Bootstrap theme</a> " +
+	          "<a class='navbar-brand' href='#'>Unicorn Phoenix <span class='glyphicon glyphicon-fire' aria-hidden='true'></span></a> " +
 	        "</div> " +
 	        "<div id='navbar' class='navbar-collapse collapse'> " +
 	          "<ul class='nav navbar-nav'> " +
-	            "<li class='active'><a href='/UnicornPhoenix'>Home</a></li> " +
+	            "<li class='dropdown'><a href='/UnicornPhoenix/Default'>Home</a></li> " +
 	            "<li class='dropdown'> " +
 	              "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Person <span class='caret'></span></a> " +
 	              "<ul class='dropdown-menu'> " +

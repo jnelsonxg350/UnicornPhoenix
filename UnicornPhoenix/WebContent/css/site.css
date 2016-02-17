@@ -7,17 +7,39 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-// Usage as a mixin
 .element {
   .center-block();
 }
 .female{
-	color:pink;
+	color:red;
+	font-weight:bold;
+	 
+	
+	
 }
 .male{
 	color:blue;
+		font-weight:bold;
+	
 }
 .othergender{
 	color:green;
+		font-weight:bold;	
+}
+.personselect{
+	font-weight:bold;
+}
+body{
+	text-color:#005566;
+	background-image:url('http://41.media.tumblr.com/7291a6b307692a893296ee3d9e97cbf8/tumblr_o2o33wv6ew1qclpaho1_250.png');
+}
+.navbar-inverse {
+    background-color: #220011;
+}
+.changetext{
+	color:#005566;
+	    text-decoration: underline;
+}
+.textcolor{
+	color:#005566;
 }
