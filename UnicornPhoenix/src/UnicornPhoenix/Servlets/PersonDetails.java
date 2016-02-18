@@ -26,6 +26,7 @@ public class PersonDetails extends Master {
 		ArrayList<Allergy> allergies = db.getAllergysForPerson(p.getPersonID());	
 		ArrayList<MedicalHistory> MedicalHistorys = db.getMedicalHistorysForPerson(p.getPersonID());
 		ArrayList<Email> Emails = db.getEmailsForPerson(p.getPersonID());
+		ArrayList<Visit> Visits = db.getVisitsForPerson(p.getPersonID());
 		
 		//Print details
 		body = new StringBuilder();
@@ -66,17 +67,23 @@ public class PersonDetails extends Master {
 		if(Emails.get(i).getType().toLowerCase().equals("other")){
 			body.append("Email is: Other ");
 		}
-		body.append("<button type='button' class='btn btn-default btn-xs btnUpdateEmail' data-id='" + Emails.get(i).getEmailID() + "'>Edit Email</button>&nbsp");
-		body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteEmail' data-id='" + Emails.get(i).getEmailID() + "'>Delete</button></br></br>");
+		body.append("<button type='button' class='btn btn-default btn-xs btnUpdateEmail' data-emailid='" + Emails.get(i).getEmailID() + "'>Edit Email</button>&nbsp");
+		body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteEmail' data-emailid='" + Emails.get(i).getEmailID() + "'>Delete</button></br></br>");
 		}
-	
+		
+		//add email button 
+		body.append("<button type='button' class='btn btn-default btn-xs' id='addEmail' data-id='" + p.getPersonID() + "'>Add Email</button>");
+			
 		body.append("<h3>Allergies<h3>");
 		for(int i = 0;i<allergies.size();i++)
 		{
 			body.append(allergies.get(i).getName() + "<br/>");
+			body.append("<button type='button' class='btn btn-default btn-xs btnUpdateAllergy' data-allergyid='" + allergies.get(i).getAllergyID() + "'>Edit Allergy</button>&nbsp");
+			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteAllergy' data-allergyid='" + allergies.get(i).getAllergyID() + "'>Delete</button></br></br>");
+		
 		}
 		//button wont work
-		body.append("<button type='button' class='btn btn-default btn-xs' id='btnUpdateAllergy' data-id='" + p.getPersonID() + "'>Add Allergy</button>");
+		body.append("<button type='button' class='btn btn-default btn-xs' id='addAllergy' data-id='" + p.getPersonID() + "'>Add Allergy</button>");
 		
 		//Medical History info update and delete button
 		body.append("<h3>Medical History<h3>");
@@ -89,8 +96,31 @@ public class PersonDetails extends Master {
 			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteMedicalHistory' data-medicalhistoryid='" + MedicalHistorys.get(i).getMedicalHistoryID() + "'>Delete</button></br></br>");
 		}
 		
-		//add button 
+		//add medical history button 
 		body.append("<button type='button' class='btn btn-default btn-xs' id='addMedHistory' data-id='" + p.getPersonID() + "'>Add Medical History</button>");
+		
+		//Visit
+		body.append("<h3>Visit<h3>");
+		for(int i = 0;i<Visits.size();i++)
+		{
+			body.append("Date of Visit:"+Visits.get(i).getDateOfVisit()+"</br></br>");
+			body.append(Visits.get(i).getBloodPressure() + "  BloodPressure" + "   " + 
+					Visits.get(i).getWeight() + "  Weight" + "   " +  
+					Visits.get(i).getHeight() + "  Height" + "   "+"</br>");
+			body.append("Visit: "+Visits.get(i).getType()+"</br>");
+			if (Visits.get(i).getType().toLowerCase().equals("Walk-In")){
+			}
+			if(Visits.get(i).getType().toLowerCase().equals("Check-Up")){
+			}
+			if(Visits.get(i).getType().toLowerCase().equals("Emergency")){
+			}
+			body.append("Result: "+Visits.get(i).getResult()+"</br>");
+			body.append("<button type='button' class='btn btn-default btn-xs btnUpdateVisit' data-visitid='" + Visits.get(i).getVisitID() + "'>Edit Visit</button>&nbsp");
+			body.append("<button type='button' class='btn btn-primary btn-xs btnDeleteVisit' data-visitid='" + Visits.get(i).getVisitID() + "'>Delete</button></br></br>");
+		}
+		
+		//add visit button 
+		body.append("<button type='button' class='btn btn-default btn-xs' id='addVisit' data-id='" + p.getPersonID() + "'>Add Visit</button>");
 		
 		super.doGet(request, response);
 	}

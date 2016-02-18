@@ -62,8 +62,8 @@ public class AddMedHistory extends Master {
 			body.append("<input type='hidden' value='" + m.getPersonID() + "' name='id'/>");
 			body.append("<div class='form-group'><label for='height'>Current Height</label><input type='text' class='form-control' id='height' name='height' placeholder='72 inches' value="+m.getCurrentHeight()+"></div></br>");
 			body.append("<div class='form-group'><label for='weight'>Current Weight</label><input type='text' class='form-control' id='weight' name='weight' placeholder='140lbs' value="+m.getCurrentWeight()+"></div></br>");
-			body.append("<div class='form-group'><label for='bloodtype' required>Blood Type </label>"+
-				    "<select id='Select' name='bloodtype' class='form-control' value='" + m.getBloodType() + "'>"+
+			body.append("<div class='form-group'><label for='bloodtype' required>Blood Type </label>"+' '+m.getBloodType()+
+				    "<select id='Select' name='bloodtype' class='form-control' value='" +"'>"+
 				    "<option value='null'>select</option>"+
 				    "<option value='o+'>O+</option>"+
 				    "<option value='o-'>O-</option>"+
@@ -73,7 +73,7 @@ public class AddMedHistory extends Master {
 				    "<option value='B-'>B-</option>"+
 				    "<option value='AB+'>AB+</option>"+
 				    "<option value='AB-'>AB-</option>"+
-				    "</select></div>");	    
+				    "</select></div>"); 
 			body.append("<div class='form-group'>"+
 		    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
 		

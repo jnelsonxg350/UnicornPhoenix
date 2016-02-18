@@ -33,22 +33,22 @@ public class AddAllergy extends Master {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		Allergy a = db.getAllergy(request.getParameter("AllergyID"));
-		int id = Integer.parseInt(request.getParameter("id"));
-		if(a.getName() == null)
-			
-		{
-			body.append("<form id='AllergyForm' data-toggle='validator'>");
-			body.append("<input type='hidden' value='" + id + "' name='id'/>");
-		body.append("<div class='form-group'>"+
-				 "<label for='allergies'>Please type in an allery:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies' required></div> ");
 		
-		body.append("<div class='form-group'>"+
+		if(a.getName() == null)
+		{
+			int id = Integer.parseInt(request.getParameter("id"));
+			body.append("<form id='AllergyForm'>");
+			body.append("<input type='hidden' value='" + id + "' name='id'/>");
+			body.append("<div class='form-group'>"+
+				 "<label for='allergies'>Please type in an allergy:</label><input type='text' class='form-control' id='allergies' placeholder='type None for no allergies' name='allergies' required></div> ");
+		
+			body.append("<div class='form-group'>"+
 	    		"<button type='submit' class='btn btn-default'>Submit</button></div></form>");
 	
 		}
 		
 		else{
-			body.append( "<form id=addAllergy>");
+			body.append( "<form id='AllergyForm'>");
 			body.append("<input type='hidden' value='" + a.getAllergyID() + "' name='allergyID'/>");
 			body.append("<input type='hidden' value='" + a.getPersonID() + "' name='id'/>");
 			body.append("<div class='form-group'>"+
@@ -67,13 +67,14 @@ public class AddAllergy extends Master {
 		
 		Allergy a = new Allergy();
 		a.setName(request.getParameter("allergies"));
-		int personID = Integer.parseInt(request.getParameter("id"));
-		a.setPersonID(personID);
-		System.out.println("personID: " + personID);
+		
+		int PersonID = Integer.parseInt(request.getParameter("id"));
+		a.setPersonID(PersonID);
+		System.out.println("personID: " + PersonID);
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
 		if(request.getParameter("allergyID") != null)
 		{
-			int id = Integer.parseInt(request.getParameter("AllergyID"));
+			int id = Integer.parseInt(request.getParameter("allergyID"));
 			a.setAllergyID(id);			
 			db.updateAllergy(a);
 		}

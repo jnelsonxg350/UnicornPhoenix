@@ -8,11 +8,7 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		window.location = "/UnicornPhoenix/PersonDetails?id=" + id;
 	});
-	$('.btnUpdateAllergy').click(function(){
-		window.location = "/UnicornPhoenix/AddAllergy";
-	});
-	
-	
+		
 	//delete the person
 	$('.btnDeletePerson').click(function(){
 		var id = $(this).data('id');
@@ -43,16 +39,24 @@ $(document).ready(function(){
 		});
 	  	
 	});
-	$("#AllergyForm" ).submit(function(event) 
-	{
-		event.preventDefault();
-	  	$.post( "/UnicornPhoenix/AddAllergy", $( "#AllergyForm" ).serialize())
-	  	.done(function(data)
-		{
-	  		window.location = "/UnicornPhoenix/AllPeople";
-		});
+	$(".btnUpdateEmail").click(function(){
+		var emailID = $(this).data('emailid');
+		window.location = "/UnicornPhoenix/AddEmail?EmailID=" + emailID;
 	});
-	
+	$('.btnDeleteEmail').click(function(){
+		var emailID = $(this).data('emailid');
+		$.post( "/UnicornPhoenix/DeleteEmail?EmailID=" + emailID, function(data){
+			window.location = "/UnicornPhoenix/AllPeople";
+		});		
+	});
+	$("#addEmail" ).click(function(event) 
+	{
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddEmail?id=" + id;		
+			  	
+	});
+		
+	//Person details visit add, update, delete
 	$("#VisitForm" ).submit(function(event) 
 	{
 		event.preventDefault();
@@ -62,21 +66,57 @@ $(document).ready(function(){
 	  		window.location = "/UnicornPhoenix/AllPeople";
 		});
 	});
-	$("#btnUpdateAllergy").click(function(){
+	$(".btnUpdateVisit").click(function(){
+		
+		var visitID = $(this).data('visitid');		
+		window.location = "/UnicornPhoenix/AddVisit?VisitID=" + visitID;
+		
+	});	
+	$("#addVisit" ).click(function(event) 
+	{
 		var id = $(this).data('id');
-		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;
+		window.location = "/UnicornPhoenix/AddVisit?id=" + id;		
+	  	
 	});
+	$(".btnDeleteVisit").click(function(){
+			
+		var visitID = $(this).data('visitid');		
+		$.post("/UnicornPhoenix/DeleteVisit?VisitID=" + visitID)
+	  	.done(function(data)
+	  	{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});	
 	
-	$(".btnUpdateEmail").click(function(){
-		var id = $(this).data('id');
-		window.location = "/UnicornPhoenix/AddEmail?id=" + id;
+	//Person details allergy add, update, delete
+	$("#AllergyForm" ).submit(function(event) 
+	{
+		event.preventDefault();
+	  	$.post( "/UnicornPhoenix/AddAllergy", $( "#AllergyForm" ).serialize())
+	  	.done(function(data)
+		{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
 	});
-	$('.btnDeleteEmail').click(function(){
-		var id = $(this).data('id');
-		$.post( "/UnicornPhoenix/DeleteEmail?id=" + id, function(data){
-			window.location = "/UnicornPhoenix/AllPeople";
-		});		
+	$(".btnUpdateAllergy").click(function(){
+		var allergyID = $(this).data('allergyid');
+		window.location = "/UnicornPhoenix/AddAllergy?AllergyID=" + allergyID;
 	});
+	$("#addAllergy" ).click(function(event) 
+	{
+		var id = $(this).data('id');
+		window.location = "/UnicornPhoenix/AddAllergy?id=" + id;		
+			  	
+	});
+	$(".btnDeleteAllergy").click(function(){
+					
+		var allergyID = $(this).data('allergyid');		
+		$.post("/UnicornPhoenix/DeleteAllergy?AllergyID=" + allergyID)
+	  	.done(function(data)
+	  	{
+	  		window.location = "/UnicornPhoenix/AllPeople";
+		});
+	});	
 	
 	//Person details medical history add, update, delete
 	$(".btnUpdateMedicalHistory").click(function(){

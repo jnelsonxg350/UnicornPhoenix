@@ -15,6 +15,6 @@ public class DeleteVisit extends Master {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		UnicornPhoenixDB db = new UnicornPhoenixDB();
-		db.deleteVisit(request.getParameter("id"));
+		db.deleteVisit(request.getParameter("VisitID"));
 	}
 }
