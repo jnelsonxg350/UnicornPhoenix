@@ -48,8 +48,8 @@ public class Utilz {
 	            "<li class='dropdown'> " +
 	              "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Person <span class='caret'></span></a> " +
 	              "<ul class='dropdown-menu'> " +
-	                "<li><a href='/UnicornPhoenix/AllPeople'>List</a></li> " +
-	                "<li><a href='/UnicornPhoenix/AddPerson'>Add</a></li> " +
+	                "<li><a href='/UnicornPhoenix/AllPeople'><span class='glyphicon glyphicon-list' aria-hidden='true'></span> &nbsp List</a></li> " +
+	                "<li><a href='/UnicornPhoenix/AddPerson'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span> &nbsp Add</a></li> " +
 	              "</ul> " +
 	            "</li> " +
 	          "</ul> " +

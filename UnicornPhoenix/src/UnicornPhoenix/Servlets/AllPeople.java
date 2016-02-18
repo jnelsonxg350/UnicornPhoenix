@@ -16,10 +16,10 @@ public class AllPeople extends Master {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//add content
-    	body.append("<h1 style='text-align:center;' class='textcolor'><span class='glyphicon glyphicon-user' aria-hidden='true'></span>&nbsp People</h1>");
+    	body.append("<h1 style='text-align:center;' class='titlecolor'><span class='glyphicon glyphicon-user' aria-hidden='true'></span>&nbsp People</h1>");
 		
     	//start the table
-    	body.append("<table class='table'><caption><button type='button' class='btn btn-default btnAddPerson'>Add Person</button></caption><thead><tr><th></th><th class='changetext'>First Name</th><th class='changetext'>Last Name</th><th class='changetext'>Type</th></tr></thead>");
+    	body.append("<table class='table'><caption><button type='button' class='btn btn-default btnAddPerson'>Add Person</button></caption><thead><tr><th></th><th class='titlecolor'>First Name</th><th class='titlecolor'>Last Name</th><th class='titlecolor'>Type</th></tr></thead>");
     	body.append("<tbody>");	
     	
     	////add the people

@@ -43,3 +43,10 @@ body{
 .textcolor{
 	color:#005566;
 }
+.titlecolor{
+	color:#881155;
+}
+.maintitle{
+	color:#005566;
+	text-shadow: 2px 2px 4px #f279da;
+}
