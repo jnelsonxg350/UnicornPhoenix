@@ -2611,9 +2611,9 @@ public class UnicornPhoenixDB
             	pst.setNull(6, Types.NULL);
             }
             
-            if(v.getPersonID() != 0)
+            if(v.getVisitID() != 0)
             {
-            	pst.setInt(7, v.getPersonID());
+            	pst.setInt(7, v.getVisitID());
             }
             else
             {
