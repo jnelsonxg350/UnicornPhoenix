@@ -42,9 +42,15 @@ body{
 }
 .textcolor{
 	color:#005566;
+	text-decoration:none;
 }
 .titlecolor{
 	color:#881155;
+}
+.titlecolortoo{
+	color:#881155;
+	text-decoration:underline;
+	font-weight: bold;
 }
 .maintitle{
 	color:#005566;
