@@ -77,8 +77,8 @@ public class AddVisit extends Master {
 					+ "<option value='checkup'name='visitType'>Check-up</option>"
 					+ "<option value='Emergency'name='visitType'>Emergency</option>"
 					+ "</select></div></br>");
-			body.append("<div class='form-group'><label for='result'> Result of the Visit</label>"+' '+v.getResult()+
-					"<input type='text' class='form-control' id='result' placeholder='please describe the result of the visit'name='result'></div></br>");
+			body.append("<div class='form-group'><label for='result'> Result of the Visit</label>"+' '+
+					"<input type='text' class='form-control' id='result' value='"+v.getResult()+"'name='result'></div></br>");
 
 			body.append("<div class='form-group'>"
 					+ "<button type='submit' class='btn btn-default'>Submit</button></div></form>");
